@@ -1,0 +1,84 @@
+.post {
+    width: 100vw;
+    // overflow-x: hidden;
+}
+
+.topSection {
+    width: 100%;
+    height: max-content;
+    display: flex;
+}
+
+.infoBlock {
+    // display: inline-block;
+    width: 100%;
+    margin: 0;
+    height: 100%;
+}
+
+.submitDiv {
+    // display: inline-block;
+    width: 100%;
+    margin: 0;
+    height: 100%;
+}
+
+.titleBlock, .urlBlock, .descriptionBlock {
+    // z-index: 0;
+}
+
+.label {
+    font-size: 20px;
+    display: block;
+    text-align: left;
+    margin: 0 0 .5em 30%;
+    color: black;
+}
+
+.postBlock input, .postBlock textarea {
+    background-color: transparent;
+    font-size: 25px;
+    width: 90%;
+    display: block;
+    margin: 0 0 2em 30%;
+    outline: none;
+    // z-index: 1000000000000000;
+}
+
+
+.descriptionBlock {
+    textarea {
+        font-size: 20px;
+        height: 5em;
+    }
+}
+
+.submitButton {
+    font-size: 25px;
+    font-weight: 700;
+    display: block;
+    margin: 3em 50% 0 auto;
+    border: 1px solid black;
+    width: max-content;
+    padding: 4em;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--gray1);
+    color: var(--green3);
+    transition: box-shadow 0.5s, color .5s;
+    box-shadow: inset 0 0 0 0 var(--green3);
+
+    &:hover {
+        box-shadow: inset 0 0 20em 5em var(--green3);
+        color: var(--gray1);
+        transition: box-shadow .5s, color .5s;
+    }
+}
+
+.post .iframe {
+    display: block;
+    margin: auto;
+    width: 70%;
+    height: 70vh;
+    margin-bottom: 5vh;
+}

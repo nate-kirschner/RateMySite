@@ -1,0 +1,71 @@
+@import "./defaults.scss";
+
+.scrollDownBlock {
+    background-color: white;
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    margin-top: 25px;
+    border-top: 3px solid var(--gray4);
+    transition: background-color .3s;
+    background-color: var(--gray1);
+    z-index: 99;
+
+    &:hover {
+        background-color: var(--gray4);
+        transition: background-color .3s;
+    }
+
+    @include laptop {
+        height: 75px;
+    }
+
+    @include desktop {
+        height: 100px;
+    }
+
+    @include largeDesktop {
+        height: 100px;
+    }
+
+    @include wideScreen {
+        height: 125px;
+    }
+}
+
+.bottom {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--gray4);
+    border-radius: 50%;
+    // margin-left: 0.75em;
+    transform: translateY(-50%);
+    background-color: white;
+    transition: transform .3s;
+
+    &:hover {
+        transform: translateY(-40%);
+        transition: transform .3s;
+    }
+
+    &.hover {
+        transform: translateY(-40%);
+        transition: transform .3s;
+    }
+}
+  
+.bottom:after {
+    content: '';
+    display: inline-block;
+    margin-top: 8px;
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid var(--gray4);
+    border-right: 3px solid var(--gray4);
+    -moz-transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+}

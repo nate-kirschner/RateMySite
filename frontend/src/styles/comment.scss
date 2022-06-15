@@ -1,0 +1,71 @@
+
+
+.commentBlock {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    // height: 50vh;
+    grid-row: 2;
+}
+
+.comment {
+    position: relative;
+    height: max-content;
+    min-height: max-content;
+    width: 100%;
+    border-bottom: 1px solid black;
+    display: grid;
+    grid-template-rows: 2em max-content 2em;
+    justify-content: left;
+    text-align: left;
+}
+
+.date {
+    grid-row: 1;
+    padding: 0 2rem;
+    align-self: center;
+    justify-self: left;
+    color: var(--gray5);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.text {
+    grid-row: 2;
+    margin: 0;
+    min-height: calc(100px - 4em);
+    padding: 0 2rem;
+}
+
+.commentLikesDiv {
+    grid-row: 3;
+    align-self: center;
+    justify-self: left;
+
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    column-gap: .5em;
+    font-size: 16px;
+
+}
+
+.comment .likesCount {
+    line-height: 1em;
+}
+
+.comment .arrow {
+    width: 1em;
+    height: 1em;
+}
+
+.arrow-up, .arrow-down {
+    margin: 0;
+}
+
+.comment .arrow-up:after {
+    border-width: .5em .5em;
+}
+
+.comment .arrow-down:after {
+    border-width: .5em .5em;
+}

@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@mixin largePhones {
+    @media only screen and (min-width: 321px) { @content; }
+}
+  
+@mixin tablet {
+  @media only screen and (min-width: 768px) { @content; }
+}
+
+@mixin laptop {
+  @media only screen and (min-width: 1024px) { @content; }
+}
+
+@mixin desktop {
+  @media only screen and (min-width: 1440px) { @content; }
+}
+
+@mixin largeDesktop {
+  @media only screen and (min-width: 1900px) { @content; }
+}
+
+@mixin wideScreen {
+  @media only screen and (min-width: 2560px) { @content; }
+}
+
+:root {
+    // Colors
+
+    //Gray
+    --gray1: hsl(100, 0%, 90%);
+    --gray2: hsl(100, 0%, 80%);
+    --gray3: hsl(100, 0%, 70%);
+    --gray4: hsl(100, 0%, 60%);
+    --gray5: hsl(100, 0%, 50%);
+    --gray6: hsl(100, 0%, 40%);
+    --gray7: hsl(100, 0%, 30%);
+    --gray8: hsl(100, 0%, 20%);
+
+    //Green
+    --green1: hsl(100, 50%, 60%);
+    --green2: hsl(100, 75%, 50%);
+    --green3: hsl(100, 100%, 25%);
+
+    //Blue
+    --blue1: hsl(200, 50%, 60%);
+    --blue2: hsl(200, 70%, 50%);
+    --blue3: hsl(200, 90%, 50%);
+    --blue4: hsl(210, 90%, 50%);
+    --blue5: hsl(220, 90%, 50%);
+    --blue6: hsl(230, 90%, 50%);
+    --blue7: hsl(235, 90%, 40%);
+    --blue8: hsl(240, 90%, 30%);
+
+
+    
+}
+
+body {
+  // font-family: 'Epilogue', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
