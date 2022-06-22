@@ -53,12 +53,14 @@
     --blue7: hsl(235, 90%, 40%);
     --blue8: hsl(240, 90%, 30%);
 
-
+    --dark-mode-gray: #282828;
+    --dark-mode-white: #EDEADE;
     
 }
 
 body {
   // font-family: 'Epilogue', sans-serif;
   font-family: 'Poppins', sans-serif;
+  background-color: var(--dark-mode-gray);
 }
 

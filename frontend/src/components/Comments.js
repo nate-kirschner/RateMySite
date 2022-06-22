@@ -18,7 +18,6 @@ export default function Comments({ commentsArr, postId, likes }) {
     const individualComment = (comment, index) => {
         return (
             <div className="comment">
-                {/* <span>{comment.username}</span> */}
                 <span className="date">{comment.date}</span>
                 <span className="text">{comment.text}</span>
                 <div className="commentLikesDiv">

@@ -12,11 +12,12 @@
     height: max-content;
     min-height: max-content;
     width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid var(--dark-mode-white);
     display: grid;
     grid-template-rows: 2em max-content 2em;
     justify-content: left;
     text-align: left;
+    color: var(--dark-mode-white);
 }
 
 .date {
@@ -24,7 +25,7 @@
     padding: 0 2rem;
     align-self: center;
     justify-self: left;
-    color: var(--gray5);
+    color: var(--gray3);
     font-weight: 700;
     font-size: 14px;
 }

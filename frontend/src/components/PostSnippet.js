@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import config from "../config";
 import "../styles/postSnippet.scss";
 import axios from 'axios';
 import Comments from "./Comments";
+import html2canvas from 'html2canvas';
 
-export default function PostSnippet({ username, id, title, description, url, likes, comments }) {
+export default function PostSnippet({ username, id, title, description, url, likes, comments, postIndex, setPostIndex }) {
 
     const [newCommentText, setNewCommentText] = useState("");
     const [commentState, setCommentState] = useState([]);
@@ -40,6 +41,10 @@ export default function PostSnippet({ username, id, title, description, url, lik
 
     const [iframeLoaded, setIframeLoaded] = useState(false);
 
+    useEffect(() => {
+        setIframeLoaded(false);
+    }, [id])
+
     const updateVotes = (newLikes) => {
         const body = { likes: newLikes, comments: commentState, postId: id };
         axios.post(config.url + "/update-post", body)
@@ -65,7 +70,9 @@ export default function PostSnippet({ username, id, title, description, url, lik
                     <span className="arrow arrow-down" onClick={() => updateVotes(postLikes - 1)}/>
                 </div>
                 <div className="siteBlock thumbnail">
+                    <div className={"scrollArrow up " + (postIndex > 0 ? "hasNext" : "noNext")} onClick={() => setPostIndex(postIndex - 1)} />
                     <iframe src={url} className={iframeLoaded ? "loaded" : ""} frameBorder="0" title={title} loading="lazy" onLoad={() => setIframeLoaded(true)}></iframe>
+                    <div className={"scrollArrow down hasNext"} onClick={() => setPostIndex(postIndex + 1)} />
                 </div>
                 <div className="comments">
                     <h3 className="commentsTitle">Comments</h3>

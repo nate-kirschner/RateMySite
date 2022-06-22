@@ -43,7 +43,7 @@
     margin: 0 auto 0 0;
     text-align: left;
     font-size: 28px;
-    color: black;
+    color: var(--dark-mode-white);
 
     position: absolute;
     top: 20px;
@@ -78,7 +78,7 @@
     margin: 0 auto 0 0;
     text-align: left;
     font-size: 10px;
-    color: black;
+    color: var(--dark-mode-white);
     text-decoration: underline;
     font-weight: 500;
 
@@ -172,6 +172,7 @@
 .likesNumber {
     font-size: 14px;
     margin: .5em 0;
+    color: var(--dark-mode-white);
 
     @include largePhones {
         font-size: 15px;
@@ -200,7 +201,8 @@
 
 .siteBlock {
     grid-row: 2;
-    grid-column: 1 / 3
+    grid-column: 1 / 3;
+    position: relative;
 }
 
 .thumbnail iframe {
@@ -210,7 +212,8 @@
     margin: 10px auto;
     visibility: hidden;
     opacity: 0;
-    border: 5px solid black;
+    border: 5px solid var(--dark-mode-white);
+    border-radius: 10px;
 
     &.loaded {
         visibility: visible;
@@ -224,7 +227,8 @@
     width: calc(97% - 2em);
     overflow: hidden;
     margin: 10px auto;
-    border: 1px solid black;
+    border: 1px solid var(--dark-mode-white);
+    border-radius: 10px;
     
     grid-column: 1 / 3;
     grid-row: 3;
@@ -246,22 +250,23 @@
     width: 100%;
     padding: 1em 0;
     margin: 0;
-    border-bottom: 1px solid black;
+    color: var(--dark-mode-white);
+    border-bottom: 1px solid var(--dark-mode-white);
 }
 
 .commentInputBlock {
     grid-row: 3;
     display: flex;
     justify-content: space-evenly;
-    border-top: 1px solid black;
+    border-top: 1px solid var(--dark-mode-white);
 }
 
 .commentInput {
     width: 80%;
-    border-radius: 1em;
+    border-radius: 10px;
     outline: none;
     margin: 1em 0;
-    border: 1px solid black;
+    border: 1px solid var(--dark-mode-white);
     padding: .5em;
     min-height: 2em;
 
@@ -281,10 +286,11 @@
     font-size: 16px;
     cursor: pointer;
     color: white;
-    background-color: var(--blue4);
+    background-color: var(--blue5);
 
     &:hover {
-        box-shadow: inset 3px 3px 3px 1px var(--blue8);
+        // box-shadow: inset 2px 2px 4px 1px var(--blue8);
+        background-color: var(--blue4);
     }
 }
 
@@ -327,7 +333,7 @@
     }
     &:before{ 
         border: none;
-        background-color: black;
+        background-color: var(--dark-mode-white);
         height: 50%;
         width: 30%;
         top: 50%;
@@ -337,7 +343,7 @@
         left: 0;
         top: -50%;
         border-width: 15px 15px;
-        border-bottom-color:black;
+        border-bottom-color:var(--dark-mode-white);
     }
 }
 
@@ -354,7 +360,7 @@
     }
     &:before{ 
         border: none;
-        background-color: black;
+        background-color: var(--dark-mode-white);
         height: 50%;
         width: 30%;
         top: 0;
@@ -364,6 +370,63 @@
         left: 0;
         top: 50%;
         border-width: 15px 15px;
-        border-top-color:black;
+        border-top-color:var(--dark-mode-white);
     }
+}
+
+
+.scrollArrow {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--gray4);
+    border-radius: 50%;
+    // margin-left: 0.75em;
+    transform: translateY(-50%);
+    background-color: var(--gray1);
+    transition: transform .3s;
+    cursor: pointer;
+    z-index: 100;
+
+    &.hasNext {        
+        &:hover {
+            &:after {
+                margin-top: 12px;
+                transition: margin .3s;
+            }
+        }
+    }
+
+    &.noNext {
+        visibility: hidden;
+    }
+}
+  
+.scrollArrow:after {
+    content: '';
+    display: inline-block;
+    margin-top: 8px;
+    width: 20px;
+    height: 20px;
+    border-top: 3px solid var(--gray4);
+    border-right: 3px solid var(--gray4);
+    -moz-transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    transition: margin .3s;
+    
+}
+
+.scrollArrow.up {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+}
+
+.scrollArrow.down {
+    position: absolute;
+    bottom: -25px;
+    left: 50%;
+    transform: translateX(-50%);
 }

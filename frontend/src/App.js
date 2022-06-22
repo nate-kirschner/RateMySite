@@ -10,7 +10,7 @@ function App() {
 
   const [selectedPost, setSelectedPost] = useState(null);
 
-  const [sort, setSort] = useState(SORTING["Least Liked"])
+  const [sort, setSort] = useState(SORTING["Most Liked"])
 
   return (
     <div className="App">

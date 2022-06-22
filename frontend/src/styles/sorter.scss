@@ -33,7 +33,7 @@
     height: 0; 
     border-left: 9px solid transparent;
     border-right: 9px solid transparent;
-    border-top: 9px solid black;
+    border-top: 9px solid var(--dark-mode-white);
     top: 0;
 }
 
@@ -80,7 +80,7 @@
 
 .sortOption {
     margin: 2px 0;
-    border: 1px solid black;
+    // border: 1px solid black;
     width: 150px;
     background-color: rgb(194, 191, 191);
 

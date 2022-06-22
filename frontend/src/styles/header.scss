@@ -2,9 +2,15 @@
 @import "./defaults.scss";
 
 .header {
+    background-color: var(--dark-mode-gray);
+    position: sticky;
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: space-around;
     align-items: baseline;
+    z-index: 999;
+    box-shadow: 0 5px 5px 5px black;
 
     @include largePhones {
         justify-content: center;
@@ -49,7 +55,7 @@
 
 .header .menuLink a {
     text-decoration: none;
-    color: black;
+    color: var(--dark-mode-white);
 
     display: flex;
     align-items: center;
@@ -78,12 +84,13 @@
 }
 
 .header .slider {
+    background-color: var(--dark-mode-gray);
     position: absolute;
-    border: 1px solid var(--gray6);
-    box-shadow: 1px 1px 5px var(--gray3);
+    border: 1px solid var(--dark-mode-white);
+    box-shadow: 1px 1px 0px var(--dark-mode-white);
     z-index: 1;
     border-radius: 40px;
-    transition: left .3s, height .3s, width .3s;
+    transition: left .3s, height .3s, width .3s, border-radius .2s;
 
     &.searchSelected {
         border-radius: 10px;
@@ -97,9 +104,10 @@
     border: none;
     outline: none;
     font-size: 20px;
+    color: var(--dark-mode-white);
 
     &::placeholder {
-        color: var(--gray6);
+        color: var(--gray3);
     }
 
     @include tablet {
