@@ -1,5 +1,5 @@
 let config = {};
 
-config.url = "http://localhost:3001/backend";
+config.url = "http://localhost:3002/backend";
 
 export default config;

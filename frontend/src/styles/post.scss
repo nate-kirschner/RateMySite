@@ -1,22 +1,11 @@
 .post {
     width: 100vw;
+    margin-top: 2em;
     // overflow-x: hidden;
 }
 
-.topSection {
-    width: 100%;
-    height: max-content;
-    display: flex;
-}
 
 .infoBlock {
-    // display: inline-block;
-    width: 100%;
-    margin: 0;
-    height: 100%;
-}
-
-.submitDiv {
     // display: inline-block;
     width: 100%;
     margin: 0;
@@ -40,9 +29,10 @@
     font-size: 25px;
     width: 90%;
     display: block;
-    margin: 0 0 2em 30%;
+    margin: 0 0 2em 5%;
     outline: none;
-    // z-index: 1000000000000000;
+    color: var(--dark-mode-white);
+    border: 1px solid var(--dark-mode-white);
 }
 
 
@@ -53,11 +43,17 @@
     }
 }
 
+.submitDiv {
+    width: 100%;
+    margin: auto;
+    height: 100%;
+}
+
 .submitButton {
     font-size: 25px;
     font-weight: 700;
-    display: block;
-    margin: 3em 50% 0 auto;
+    // display: block;
+    // margin: 3em 50% 0 auto;
     border: 1px solid black;
     width: max-content;
     padding: 4em;

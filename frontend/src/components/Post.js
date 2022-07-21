@@ -32,30 +32,26 @@ export default function Post() {
 
     return (
         <div className="post mainpage">
-            <div className="topSection">
-                <div className="infoBlock">
-                    <div className="titleBlock postBlock">
-                        <span className="titleSpan label">Post Title</span>
-                        <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
-                    </div>
-
-                    <div className="urlBlock postBlock">
-                        <span className="urlSpan label">Website Url</span>
-                        <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
-                    </div>
-
-                    <div className="descriptionBlock postBlock">
-                        <span className="descSpan label">Description</span>
-                        <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
-                    </div>
-
+            <div className="infoBlock">
+                <div className="titleBlock postBlock">
+                    <span className="titleSpan label">Post Title</span>
+                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
                 </div>
 
-                <div className="submitDiv">
-                    <div className="submitButton" onClick={() => makePost()}>Submit</div>
+                <div className="urlBlock postBlock">
+                    <span className="urlSpan label">Website Url</span>
+                    <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+                </div>
+
+                <div className="descriptionBlock postBlock">
+                    <span className="descSpan label">Description</span>
+                    <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>
             </div>
 
+            {/* <div className="submitDiv">
+                <div className="submitButton" onClick={() => makePost()}>Submit</div>
+            </div> */}
 
             <iframe className="iframe" src={url} title="title" />
 

@@ -1,5 +1,5 @@
 config = {
-    port: 3001,
+    port: 3002,
     baseUrl: "/backend",
     mysql: {
         host: "localhost",
