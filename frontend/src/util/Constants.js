@@ -30,6 +30,9 @@ export const SORTING = {
         displayName: "Least Interactions"
     },
     "Random": {
+        type: "RAND()",
+        direction: "",
         displayName: "Random"
+
     }
 }

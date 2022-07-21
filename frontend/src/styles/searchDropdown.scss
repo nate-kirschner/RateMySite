@@ -10,6 +10,7 @@
 }
 
 .searchOption {
+    cursor: pointer;
     // border: 1px solid black;
     background-color: var(--gray1);
     z-index: 99999999999999;
@@ -19,7 +20,7 @@
     box-shadow: 0px 0px 15px 5px var(--dark-mode-gray);
 
     &:hover {
-        background-color: var(--gray4);
+        background-color: var(--yellow1);
     }
 
     font-size: 16px;

@@ -36,7 +36,12 @@ export default function SearchDropdown({ searchText, style, setSelectedPost, set
             {
                 posts.map(post => {
                     return (
-                        <div className="searchOption" onClick={() => {setSelectedPost(post); deselectSearchBar(); navigate('/');}}>
+                        <div className="searchOption"
+                            onClick={() => {
+                                setSelectedPost(post); 
+                                deselectSearchBar(); 
+                                navigate('/');
+                            }}>
                             <h3 className="title">{post.title}</h3>
                             <p className="url">{post.url}</p>
                             <h4 className="description">{post.description}</h4>

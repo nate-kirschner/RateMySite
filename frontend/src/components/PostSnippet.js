@@ -3,7 +3,6 @@ import config from "../config";
 import "../styles/postSnippet.scss";
 import axios from 'axios';
 import Comments from "./Comments";
-import html2canvas from 'html2canvas';
 
 export default function PostSnippet({ username, id, title, description, url, likes, comments, postIndex, setPostIndex }) {
 

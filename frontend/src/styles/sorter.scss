@@ -86,9 +86,10 @@
     margin: 2px 0;
     // border: 1px solid black;
     width: 150px;
-    background-color: rgb(194, 191, 191);
+    // background-color: rgb(194, 191, 191);
+    background-color: var(--gray1);
 
     &:hover {
-        background-color: rgb(234, 244, 191);
+        background-color: var(--yellow1);
     }
 }

@@ -1,27 +1,41 @@
+@import './defaults.scss';
+
 .post {
     width: 100vw;
     margin-top: 2em;
-    // overflow-x: hidden;
 }
 
-
 .infoBlock {
-    // display: inline-block;
     width: 100%;
     margin: 0;
     height: 100%;
-}
-
-.titleBlock, .urlBlock, .descriptionBlock {
-    // z-index: 0;
 }
 
 .label {
     font-size: 20px;
     display: block;
     text-align: left;
-    margin: 0 0 .5em 30%;
+    margin: 0 0 .5em 5%;
     color: var(--dark-mode-white);
+
+    @include tablet {
+        margin-left: 10%;
+        font-size: 22px;
+    }
+
+    @include laptop {
+        margin-left: 15%;
+        font-size: 24px;
+    }
+
+    @include largeDesktop {
+        margin-left: 25%;
+        font-size: 28px;
+    }
+
+    @include wideScreen {
+        font-size: 36px;
+    }
 }
 
 .postBlock input, .postBlock textarea {
@@ -29,12 +43,30 @@
     font-size: 25px;
     width: 90%;
     display: block;
-    margin: 0 0 2em 5%;
+    margin: 0 auto 2em auto;
     outline: none;
     color: var(--dark-mode-white);
     border: 1px solid var(--dark-mode-white);
-}
 
+    @include tablet {
+        width: 80%;
+        font-size: 27px;
+    }
+
+    @include laptop {
+        width: 70%;
+        font-size: 30px;
+    }
+
+    @include largeDesktop {
+        width: 50%;
+        font-size: 34px;
+    }
+
+    @include wideScreen {
+        font-size: 40px;
+    }
+}
 
 .descriptionBlock {
     textarea {
@@ -43,38 +75,69 @@
     }
 }
 
-.submitDiv {
-    width: 100%;
-    margin: auto;
-    height: 100%;
-}
-
-.submitButton {
-    font-size: 25px;
-    font-weight: 700;
-    // display: block;
-    // margin: 3em 50% 0 auto;
-    border: 1px solid black;
-    width: max-content;
-    padding: 4em;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: var(--gray1);
-    color: var(--green3);
-    transition: box-shadow 0.5s, color .5s;
-    box-shadow: inset 0 0 0 0 var(--green3);
-
-    &:hover {
-        box-shadow: inset 0 0 20em 5em var(--green3);
-        color: var(--gray1);
-        transition: box-shadow .5s, color .5s;
-    }
-}
-
 .post .iframe {
     display: block;
     margin: auto;
-    width: 70%;
+    width: 90%;
     height: 70vh;
     margin-bottom: 5vh;
+
+    @include tablet {
+        width: 80%;
+    }
+
+    @include laptop {
+        width: 70%;
+    }
+
+    @include largeDesktop {
+        width: 50%;
+    }
+}
+
+.submitDiv {
+    // widh
+}
+
+.submit {
+    width: 90%;
+    padding: 1em 0;
+    margin-bottom: 4em;
+    background-color: var(--green3);
+    color: var(--gray1);
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+
+    &:hover {
+        background-color: var(--green2);
+        color: var(--gray8); 
+    }
+
+    @include largePhones {
+        font-size: 19px;
+    }
+
+    @include tablet {
+        font-size: 21px;
+        width: 80%;
+    }
+
+    @include laptop {
+        font-size: 22px;
+        width: 70%;
+    }
+
+    @include desktop {
+        font-size: 24px;
+    }
+
+    @include largeDesktop {
+        font-size: 26px;
+        width: 50%;
+    }
+
+    @include wideScreen {
+        font-size: 30px;
+    }
 }
