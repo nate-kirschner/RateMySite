@@ -16,7 +16,7 @@ async function doesEditKeyExist(db, params) {
 
 function getPostsSorted(db, params, callback) {
     const { startIdx, endIdx, sort } = params;
-    db.query(`select id, title, description, url, likes, comments, numComments from posts order by ${sort.type} ${sort.direction} limit 1 offset ?`, [startIdx], (err, result) => {
+    db.query(`select id, title, description, url, likes, comments, numComments from posts where isApproved = 1 order by ${sort.type} ${sort.direction} limit 1 offset ?`, [startIdx], (err, result) => {
         if (err) {
             throw err;
         }

@@ -44,8 +44,37 @@ export default function PostSnippet({ username, id, title, description, url, lik
         setIframeLoaded(false);
     }, [id])
 
-    const updateVotes = (newLikes) => {
-        const body = { likes: newLikes, comments: commentState, postId: id };
+    const updateVotes = (direction) => {
+        let newLikes = postLikes;
+        let storedDirection = localStorage.getItem("post:" + id);
+        if (direction === "down") {
+            if (storedDirection === "down") {
+                newLikes += 1;
+                localStorage.setItem("post:" + id, null);
+            } else if (storedDirection === "up") {
+                newLikes -= 2;
+                localStorage.setItem("post:" + id, direction);
+            } else {
+                newLikes -= 1;
+                localStorage.setItem("post:" + id, direction);
+            }
+        } else if (direction === "up") {
+            if (storedDirection === "up") {
+                newLikes -= 1;
+                localStorage.setItem("post:" + id, null);
+            } else if (storedDirection === "down") {
+                newLikes += 2;
+                localStorage.setItem("post:" + id, direction);
+            } else {
+                newLikes += 1;
+                localStorage.setItem("post:" + id, direction);
+            }
+        }
+        const body = { 
+            likes: newLikes, 
+            comments: commentState, 
+            postId: id 
+        };
         axios.post(config.url + "/update-post", body)
         setPostLikes(newLikes);
     }
@@ -64,9 +93,15 @@ export default function PostSnippet({ username, id, title, description, url, lik
                     <a className="postUrl" href={url} target="_blank" rel="noreferrer noopener">{url}</a>
                 </div>
                 <div className="likesBlock">
-                    <span className="arrow arrow-up" onClick={() => updateVotes(postLikes + 1)}/>
+                    <span
+                        className={"arrow arrow-up " + (localStorage.getItem("post:" + id) === "up" && "selected")}
+                        onClick={() => updateVotes("up")}
+                    />
                     <h4 className="likesNumber">{postLikes}</h4>
-                    <span className="arrow arrow-down" onClick={() => updateVotes(postLikes - 1)}/>
+                    <span
+                        className={"arrow arrow-down " + (localStorage.getItem("post:" + id) === "down" && "selected")} 
+                        onClick={() => updateVotes("down")}
+                    />
                 </div>
                 <div className="siteBlock thumbnail">
                     <div className={"scrollArrow up " + (postIndex > 0 ? "hasNext" : "noNext")} onClick={() => setPostIndex(postIndex - 1)} />

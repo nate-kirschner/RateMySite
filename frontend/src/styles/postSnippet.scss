@@ -327,7 +327,7 @@
 }
 
 .arrow-up {
-    &:hover {
+    &:hover, &.selected {
         &:before {
             background-color: rgb(67, 135, 67);
         }
@@ -354,7 +354,7 @@
 
 
 .arrow-down{
-    &:hover {
+    &:hover, &.selected {
         &:before {
             background-color: rgb(135, 67, 67);
         }
