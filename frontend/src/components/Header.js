@@ -7,7 +7,7 @@ import '../styles/header.scss';
 import SearchDropdown from './SearchDropdown';
 import Sorter from './Sorter';
 
-export default function Header({ setSelectedPost, sort, setSort }) {
+export default function Header({ setSelectedPost, sort, setSort, showHeader }) {
 
     const location = useLocation();
 
@@ -25,6 +25,9 @@ export default function Header({ setSelectedPost, sort, setSort }) {
     const deselectSearchBar = () => {
         setSearchSelected(false); 
         setSearchText(""); 
+        if (location.pathname === "/") {
+            setSliderDimensions({});
+        }
     }
 
     useOutsideClickedAction(deselectSearchBar, sliderRef, searchDropdownRef);
@@ -46,8 +49,7 @@ export default function Header({ setSelectedPost, sort, setSort }) {
                         width = postRef.current.offsetWidth;
                         height = postRef.current.offsetHeight;
                         break;
-                    case "/":
-                    default:
+                    case "/browse":
                         top = browseRef.current.offsetTop;
                         left = browseRef.current.offsetLeft;
                         width = browseRef.current.offsetWidth;
@@ -83,9 +85,9 @@ export default function Header({ setSelectedPost, sort, setSort }) {
     }
 
     return (
-        <div className="header">
+        <div className={"header " + (showHeader ? "show" : "hide")}>
             <h2 className={`menuLink ${searchSelected && "searchSelected"}`}  >
-                <Link to="/">
+                <Link to="/browse">
                     <Sorter searchSelected={searchSelected} sort={sort} setSort={setSort} setBrowseRef={setBrowseRef} />
                 </Link>
             </h2>

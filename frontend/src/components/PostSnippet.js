@@ -42,6 +42,7 @@ export default function PostSnippet({ username, id, title, description, url, lik
 
     useEffect(() => {
         setIframeLoaded(false);
+        setTimeout(() => setIframeLoaded(true), 50);
     }, [id])
 
     const updateVotes = (direction) => {
@@ -86,7 +87,7 @@ export default function PostSnippet({ username, id, title, description, url, lik
     }
 
     return (
-        <div className="postSnippet">
+        <div className={"postSnippet " + (iframeLoaded ? "loaded" : "")}>
             <div className="mainBlock">
                 <div className="titleBlock">
                     <h3 className="postTitle">{title}</h3>
@@ -104,9 +105,9 @@ export default function PostSnippet({ username, id, title, description, url, lik
                     />
                 </div>
                 <div className="siteBlock thumbnail">
-                    <div className={"scrollArrow up " + (postIndex > 0 ? "hasNext" : "noNext")} onClick={() => setPostIndex(postIndex - 1)} />
-                    <iframe src={url} className={iframeLoaded ? "loaded" : ""} frameBorder="0" title={title} loading="lazy" onLoad={() => setIframeLoaded(true)}></iframe>
-                    <div className={"scrollArrow down hasNext"} onClick={() => setPostIndex(postIndex + 1)} />
+                    <div className={"prev " + (postIndex > 0 ? "hasNext" : "noNext")} onClick={() => setPostIndex(postIndex - 1)} />
+                    <iframe src={url} frameBorder="0" title={title} loading="lazy" onLoad={() => setIframeLoaded(true)}></iframe>
+                    <div className={"next hasNext "} onClick={() => setPostIndex(postIndex + 1)} />
                 </div>
                 <div className="comments">
                     <h3 className="commentsTitle">Comments</h3>

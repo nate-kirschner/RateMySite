@@ -40,7 +40,7 @@ export default function SearchDropdown({ searchText, style, setSelectedPost, set
                             onClick={() => {
                                 setSelectedPost(post); 
                                 deselectSearchBar(); 
-                                navigate('/');
+                                navigate('/browse');
                             }}>
                             <h3 className="title">{post.title}</h3>
                             <p className="url">{post.url}</p>

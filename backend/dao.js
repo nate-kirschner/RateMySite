@@ -36,8 +36,19 @@ function updatePost(db, params, callback) {
 
 function getPostsByTitleOrURL(db, params, callback) {
     const { searchString } = params;
-    db.query(`select id, title, description, url, likes, comments, numComments from posts where title like '%${searchString}%' or url like '%${searchString}%'`, 
+    db.query(`select id, title, description, url, likes, comments, numComments from posts where isApproved = 1 and title like '%${searchString}%' or url like '%${searchString}%'`, 
     [], 
+    (err, result) => {
+        if (err) {
+            throw err;
+        }
+        callback(result);
+    })
+}
+
+function getPostById(db, params, callback) {
+    const { postId } = params;
+    db.query("select id, title, description, url, likes, comments, numComments from posts where id = ?", [postId], 
     (err, result) => {
         if (err) {
             throw err;
@@ -51,5 +62,6 @@ module.exports = {
     doesEditKeyExist,
     getPostsSorted,
     updatePost,
-    getPostsByTitleOrURL
+    getPostsByTitleOrURL,
+    getPostById
 }

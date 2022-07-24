@@ -1,0 +1,86 @@
+@import './defaults.scss';
+
+.home {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 90%;
+    margin: 0 auto;
+    padding: 0 0 50px 0;
+}
+
+.home .title {
+    color: var(--dark-mode-white);
+    text-align: center;
+    margin: 10px auto 0 auto;
+    font-size: 34px;
+    width: 100%;
+    padding: 0;
+    height: 20%;
+
+    @include tablet {
+        font-size: 40px;
+    }
+
+    @include laptop {
+        font-size: 46px;
+    }
+}
+
+.home p {
+    width: 100%;
+    margin: 50px 0 0 0;  
+    color: var(--dark-mode-white);
+    padding: 0;
+    font-size: 24px;
+    text-align: center;
+    justify-self: flex-end;
+
+    @include tablet {
+        font-size: 28px;
+    }
+
+    @include laptop {
+        margin: 100px 0 0 0;
+        width: 50%;
+        
+    }
+}
+
+.browseText {
+
+}
+
+.postText {
+
+}
+
+.home button {
+    font-size: 22px;
+    padding: 1em;
+    border-radius: 10px;
+    background-color: var(--dark-mode-white);
+    color: var(--dark-mode-gray);
+    border: none;
+    margin: 40px 0 0 0;
+    cursor: pointer;
+
+    &:active {
+        background-color: var(--dark-mode-white-2);
+        box-shadow: inset 0px 0px 5px black;
+    }
+}
+
+.browseButton {
+    margin-bottom: 100px;
+    
+    @include laptop {
+        order: 2;
+    }
+}
+
+.postButton {
+    @include laptop {
+        order: 4;
+    }
+}

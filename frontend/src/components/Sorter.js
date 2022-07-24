@@ -22,7 +22,7 @@ export default function Sorter({ searchSelected, sort, setSort, setBrowseRef }) 
     }, [])
 
     const clickedBrowse = () => {
-        if (location.pathname === "/" && !displaySortOption) {
+        if (location.pathname === "/browse" && !displaySortOption) {
             setDisplaySortOptions(true);
         } else if (displaySortOption) {
             setDisplaySortOptions(false);
@@ -33,10 +33,10 @@ export default function Sorter({ searchSelected, sort, setSort, setBrowseRef }) 
         <div className="sorter" >
             <div ref={browseRef} className="browseTitle" onClick={() => clickedBrowse()}>
                 Browse
-                <div className={"dropdownTriangle " + (location.pathname === "/" && !searchSelected ? "visible" : "hidden")} />
+                <div className={"dropdownTriangle " + (location.pathname === "/browse" && !searchSelected ? "visible" : "hidden")} />
             </div>
             {
-                location.pathname === "/" && !searchSelected && (
+                location.pathname === "/browse" && !searchSelected && (
                     <div className="selectedSortDiv"
                         ref={textDivRef}
                         style={{

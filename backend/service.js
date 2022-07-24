@@ -29,10 +29,14 @@ async function createEditKey(db) {
 }
 
 async function getPosts(db, params, callback) {
-    const { startIdx, endIdx, sort, filters, searchString } = params;
+    const { startIdx, endIdx, sort, filters, searchString, postId } = params;
     if (sort === "search") {
         dao.getPostsByTitleOrURL(db, { searchString }, (posts) => {
             callback(posts);
+        })
+    } else if (sort === "id") {
+        dao.getPostById(db, { postId }, (post) => {
+            callback(post);
         })
     } else {
         dao.getPostsSorted(db, { startIdx, endIdx, sort }, (posts) => {

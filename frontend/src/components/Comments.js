@@ -5,8 +5,6 @@ import config from '../config';
 
 export default function Comments({ commentsArr, postId, likes }) {
 
-    console.log(commentsArr)
-
     const [update, setUpdate] = useState(false);
 
     const updateComment = (index, commentLikes, direction) => {

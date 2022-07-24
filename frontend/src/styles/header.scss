@@ -16,8 +16,15 @@
         justify-content: center;
     }
 
-    
-    
+    &.show {
+        transform: none;
+        transition: transform .7s;
+    }
+
+    &.hide {
+        transform: translateY(-100%);
+        transition: transform .7s;
+    }
 }
 
 .header .menuLink {

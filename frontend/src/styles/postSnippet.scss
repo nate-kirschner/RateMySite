@@ -5,6 +5,15 @@
     height: 100%;
     margin: 0 auto;
     // overflow-x: hidden;
+    opacity: 0;
+    // transition: opacity .5s;
+    
+    &.loaded {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 1s;
+    }
+    
 }
 
 .mainBlock {
@@ -211,24 +220,16 @@
 
 .thumbnail iframe {
     height: calc(80vh - 20px);
-    width: calc(97% - 2em);
+    width: calc(97% - 10em);
     overflow: hidden;
     margin: 10px auto;
-    visibility: hidden;
-    opacity: 0;
     border: 5px solid var(--dark-mode-white);
     border-radius: 10px;
-
-    &.loaded {
-        visibility: visible;
-        opacity: 1;
-        transition: opacity 1s;
-    }
 }
 
 .comments {
     height: calc(80vh - 20px);
-    width: calc(97% - 2em);
+    width: calc(97% - 10em);
     overflow: hidden;
     margin: 10px auto;
     border: 1px solid var(--dark-mode-white);
@@ -241,7 +242,7 @@
     grid-template-rows: max-content 1fr max-content;
     
     @include largePhones {
-        width: calc(97% - 2em);
+        width: calc(97% - 10em);
     }
 
     @include laptop {
@@ -435,3 +436,88 @@
     top: 50%;
     transform: translateX(-50%) rotate(270deg);
 }
+
+
+.prev, .next {    
+    position: fixed;
+
+    // border: 1px solid white;
+    //   font-size: 2em;
+      width:5em;
+      height:20em;
+    //   position: fixed;
+    //   overflow:hidden;
+      transition: background-color .4s ease-out;
+      
+      &:before,
+      &:after {
+        transition: background-color .4s ease-out;
+        content:"";
+        position:absolute;
+        // left:25%;
+        // right:25%;
+        height:2px;
+        background-color: var(--dark-mode-white);
+        top: 50%;
+        width: 10em;
+      }
+        
+      &:hover {
+        &:before,
+        &:after {
+          background-color: var(--gray4);
+        }
+      }
+      
+      
+    
+  }
+
+  .prev {
+    
+    left: 0;
+    top: 40%;
+
+
+    &:after {
+      transform-origin: 0 0;
+      transform: rotate(-70deg) translate(-1%);
+      border-radius: 10px;
+    }
+    
+    &:before {
+      transform-origin: 0 100%; 
+      transform: rotate(70deg) translate(-1%);
+      border-radius: 10px;
+    }
+
+    &:before, &:after {
+        left: 15%;
+    }
+
+    &.noNext {
+        visibility: hidden;
+    }
+  }
+
+  .next {
+
+    right: 0;
+    top: 40%;
+  
+    &:after {
+      transform-origin: 100% 100%;
+      transform: rotate(-70deg) translate(1%);
+      border-radius: 10px;
+    }
+    
+    &:before {
+      transform-origin: 100% 0;
+      transform: rotate(70deg) translate(1%);
+      border-radius: 10px;
+    }
+
+    &:before, &:after {
+        right: 15%;
+    }
+  }
