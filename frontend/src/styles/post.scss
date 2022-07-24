@@ -75,6 +75,36 @@
     }
 }
 
+.checkBlock {
+    width: max-content;
+    margin: 0 0 2em 5%;
+
+    @include tablet {
+        margin-left: 10%;
+    }
+
+    @include laptop {
+        margin-left: 15%;
+    }
+
+    @include largeDesktop {
+        margin-left: 25%;
+    }
+}
+
+.postBlock input.checkbox {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.postBlock .label.checkbox {
+    display: inline;
+    margin: 0 0 0 1em;
+}
+
 .post .iframe {
     display: block;
     margin: auto;

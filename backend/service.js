@@ -1,7 +1,7 @@
 const dao = require('./dao');
 
 async function makePost(db, params, callback) {
-    const { title, description, url } = params;
+    const { title, description, url, hasCommentSection } = params;
     let editKeyFound = false;
     let editKey;
     while (!editKeyFound) {
@@ -9,7 +9,7 @@ async function makePost(db, params, callback) {
         editKeyFound = await dao.doesEditKeyExist(db, { editKey })
     }
     try {
-        dao.makePost(db, { title, description, url, editKey }, (result) => {
+        dao.makePost(db, { title, description, url, hasCommentSection, editKey }, (result) => {
             callback({ status: 200 })
         })
     } catch (err) {

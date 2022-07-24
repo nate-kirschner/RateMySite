@@ -4,7 +4,7 @@ import "../styles/postSnippet.scss";
 import axios from 'axios';
 import Comments from "./Comments";
 
-export default function PostSnippet({ username, id, title, description, url, likes, comments, postIndex, setPostIndex }) {
+export default function PostSnippet({ username, id, title, description, url, likes, comments, postIndex, setPostIndex, hasCommentSection }) {
 
     const [newCommentText, setNewCommentText] = useState("");
     const [commentState, setCommentState] = useState([]);
@@ -109,14 +109,18 @@ export default function PostSnippet({ username, id, title, description, url, lik
                     <iframe src={url} frameBorder="0" title={title} loading="lazy" onLoad={() => setIframeLoaded(true)}></iframe>
                     <div className={"next hasNext "} onClick={() => setPostIndex(postIndex + 1)} />
                 </div>
-                <div className="comments">
-                    <h3 className="commentsTitle">Comments</h3>
-                    <Comments commentsArr={commentState} postId={id} likes={postLikes} />
-                    <div className="commentInputBlock">
-                        <textarea className="commentInput" rows={2} placeholder="Add a new comment..." value={newCommentText} onChange={(e) => setNewCommentText(e.target.value)} onKeyDown={(e) => handleEnterComment(e)}/>
-                        <div className="submitComment" onClick={() => submitComment()}>Send</div>
-                    </div>
-                </div>
+                {
+                    hasCommentSection && (
+                        <div className="comments">
+                            <h3 className="commentsTitle">Comments</h3>
+                            <Comments commentsArr={commentState} postId={id} likes={postLikes} />
+                            <div className="commentInputBlock">
+                                <textarea className="commentInput" rows={2} placeholder="Add a new comment..." value={newCommentText} onChange={(e) => setNewCommentText(e.target.value)} onKeyDown={(e) => handleEnterComment(e)}/>
+                                <div className="submitComment" onClick={() => submitComment()}>Send</div>
+                            </div>
+                        </div>
+                    )
+                }
             </div>
            
         </div>

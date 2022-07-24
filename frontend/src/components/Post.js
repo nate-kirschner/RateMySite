@@ -9,11 +9,12 @@ export default function Post() {
     const [title, setTitle] = useState("");
     const [url, setUrl] = useState("https://");
     const [description, setDescription] = useState("");
+    const [hasCommentSection, setHasCommentSection] = useState(true);
     
     const makePost = () => {
         if (title !== "" || description !== "") { // TODO or iframe not rendered
             const body = {
-                title, description, url
+                title, description, url, hasCommentSection
             }
             axios.post(config.url + "/make-post", body).then(resp => {
                 if (resp.data.status === 200) {
@@ -46,6 +47,14 @@ export default function Post() {
                 <div className="descriptionBlock postBlock">
                     <span className="descSpan label">Description</span>
                     <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+                </div>
+
+                <div className="checkBlock postBlock">
+                    <input type="checkbox" className="input checkbox"
+                        onChange={(e) => setHasCommentSection(!hasCommentSection)}
+                        checked={hasCommentSection}
+                    />
+                    <span className="label checkbox">Has comment section?</span>
                 </div>
             </div>
 
