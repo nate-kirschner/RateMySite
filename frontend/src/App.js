@@ -8,14 +8,17 @@ import { SORTING } from './util/Constants';
 import Home from './components/Home';
 
 function App() {
-
   const [selectedPost, setSelectedPost] = useState(null);
-
-  const [sort, setSort] = useState(SORTING["Most Liked"]);
+  
+  const [sort, setSort] = useState(localStorage.getItem("sorting") ? SORTING[localStorage.getItem("sorting")] : SORTING["Most Liked"]);
 
   const [showHeader, setShowHeader] = useState(false);
 
   const location = useLocation();
+
+  useEffect(() => {
+    localStorage.setItem("sorting", sort.keyName);
+  }, [sort])
 
   useEffect(() => {
     if (location.pathname === "/") {
