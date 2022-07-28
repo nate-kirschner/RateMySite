@@ -4,9 +4,7 @@
     width: 100vw;
     height: 100%;
     margin: 0 auto;
-    // overflow-x: hidden;
     opacity: 0;
-    // transition: opacity .5s;
     
     &.loaded {
         visibility: visible;
@@ -20,7 +18,7 @@
     display: grid;
 
     margin-top: 20px;
-    grid-template-rows: max-content 80vh 80vh;
+    grid-template-rows: max-content 80vh max-content 40vh;
     grid-template-columns: max-content 1fr;
     row-gap: 0px;
 
@@ -220,7 +218,7 @@
 
 .thumbnail iframe {
     height: calc(80vh - 20px);
-    width: calc(97% - 10em);
+    width: calc(97% - 2em);
     overflow: hidden;
     margin: 10px auto;
     border: 5px solid var(--dark-mode-white);
@@ -229,7 +227,7 @@
 
 .comments {
     height: calc(80vh - 20px);
-    width: calc(97% - 10em);
+    width: calc(97% - 2em);
     overflow: hidden;
     margin: 10px auto;
     border: 1px solid var(--dark-mode-white);
@@ -437,20 +435,24 @@
     transform: translateX(-50%) rotate(270deg);
 }
 
+.pageButtons {
+    grid-row: 4;
+    grid-column: 1 / 3;
+    display: flex;
+    overflow: hidden;
+    margin: 40px 0;
+}
 
-.prev, .next {    
-    position: fixed;
 
-    // border: 1px solid white;
-    //   font-size: 2em;
-      width:5em;
-      height:20em;
-    //   position: fixed;
-    //   overflow:hidden;
-      transition: background-color .4s ease-out;
-      
-      &:before,
-      &:after {
+.prev, .next {
+    position: relative;
+  
+    width:50%;
+    height:100%;
+    transition: background-color .4s ease-out;
+    
+    &:before,
+    &:after {
         transition: background-color .4s ease-out;
         content:"";
         position:absolute;
@@ -459,40 +461,40 @@
         height:2px;
         background-color: var(--dark-mode-white);
         top: 50%;
-        width: 10em;
-      }
+        width: 65%;
+    }
         
-      &:hover {
-        &:before,
-        &:after {
-          background-color: var(--gray4);
-        }
-      }
+    &:hover {
+    &:before,
+    &:after {
+        background-color: var(--gray4);
+    }
+    }
       
-      
+    
     
   }
 
   .prev {
     
-    left: 0;
-    top: 40%;
+    // left: 30%;
+    // top: 40%;
 
 
     &:after {
       transform-origin: 0 0;
-      transform: rotate(-70deg) translate(-1%);
+      transform: rotate(-50deg) translate(-1px);
       border-radius: 10px;
     }
     
     &:before {
       transform-origin: 0 100%; 
-      transform: rotate(70deg) translate(-1%);
+      transform: rotate(50deg) translate(-1px);
       border-radius: 10px;
     }
 
     &:before, &:after {
-        left: 15%;
+        left: 30%;
     }
 
     &.noNext {
@@ -502,22 +504,22 @@
 
   .next {
 
-    right: 0;
-    top: 40%;
+    // right: 0;
+    // top: 40%;
   
     &:after {
       transform-origin: 100% 100%;
-      transform: rotate(-70deg) translate(1%);
+      transform: rotate(-50deg) translate(1px);
       border-radius: 10px;
     }
     
     &:before {
       transform-origin: 100% 0;
-      transform: rotate(70deg) translate(1%);
+      transform: rotate(50deg) translate(1px);
       border-radius: 10px;
     }
 
     &:before, &:after {
-        right: 15%;
+        right: 30%;
     }
   }

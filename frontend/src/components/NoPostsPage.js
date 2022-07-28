@@ -28,20 +28,22 @@ export default function NoPostsPage({ postIndex, setPostIndex }) {
                     />
                 </div>
                 <div className="siteBlock thumbnail">
-                    <div className={"prev " + (postIndex > 0 ? "hasNext" : "noNext")} onClick={() => setPostIndex(postIndex - 1)} />
+                    
                     <div className="iframe">
                         <p>There are no more posts to view at this time. Feel free to make your own!</p>
                     </div>
-                    <div className={"next hasNext"} onClick={() => setPostIndex(postIndex + 1)} />
                 </div>
-                {/* <div className="comments">
-                    <h3 className="commentsTitle">Comments</h3>
-                    <Comments commentsArr={commentState} postId={id} likes={postLikes} />
-                    <div className="commentInputBlock">
-                        <textarea className="commentInput" rows={2} placeholder="Add a new comment..." value={newCommentText} onChange={(e) => setNewCommentText(e.target.value)} onKeyDown={(e) => handleEnterComment(e)}/>
-                        <div className="submitComment" onClick={() => submitComment()}>Send</div>
-                    </div>
-                </div> */}
+                <div className="pageButtons">
+                    <div 
+                        className={"prev " + (postIndex > 0 ? "hasNext" : "noNext")} 
+                        onClick={() => setPostIndex(postIndex - 1)} 
+                    />
+                    <div 
+                        className={"next hasNext "} 
+                        onClick={() => setPostIndex(postIndex + 1)} 
+                    />
+                </div>
+                
             </div>
            
         </div>

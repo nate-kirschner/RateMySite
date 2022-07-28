@@ -105,9 +105,9 @@ export default function PostSnippet({ username, id, title, description, url, lik
                     />
                 </div>
                 <div className="siteBlock thumbnail">
-                    <div className={"prev " + (postIndex > 0 ? "hasNext" : "noNext")} onClick={() => setPostIndex(postIndex - 1)} />
+                    
                     <iframe src={url} frameBorder="0" title={title} loading="lazy" onLoad={() => setIframeLoaded(true)}></iframe>
-                    <div className={"next hasNext "} onClick={() => setPostIndex(postIndex + 1)} />
+                    
                 </div>
                 {
                     hasCommentSection && (
@@ -121,8 +121,18 @@ export default function PostSnippet({ username, id, title, description, url, lik
                         </div>
                     )
                 }
+                <div className="pageButtons">
+                    <div 
+                        className={"prev " + (postIndex > 0 ? "hasNext" : "noNext")} 
+                        onClick={() => setPostIndex(postIndex - 1)} 
+                    />
+                    <div 
+                        className={"next hasNext "} 
+                        onClick={() => setPostIndex(postIndex + 1)} 
+                    />
+                </div>
+                
             </div>
-           
         </div>
     )
 }

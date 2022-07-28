@@ -6,7 +6,7 @@
     display: grid;
 
     margin-top: 20px;
-    grid-template-rows: max-content 80vh 40px;
+    grid-template-rows: max-content 80vh max-content 40vh;
     grid-template-columns: max-content 1fr;
     row-gap: 0px;
 
@@ -37,7 +37,7 @@
     display: flex;
 
     height: calc(80vh - 20px);
-    width: calc(97% - 10em);
+    width: calc(97% - 2em);
     overflow: hidden;
     margin: 10px auto;
     border: 5px solid var(--dark-mode-white);
