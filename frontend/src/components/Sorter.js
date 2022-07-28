@@ -53,12 +53,12 @@ export default function Sorter({ searchSelected, sort, setSort, setBrowseRef }) 
                 )
             }
             {
-                <div className={"displaySortOptions " + (displaySortOption ? "visible" : "hidden")}
+                <div className={"displaySortOptions " + (displaySortOption ? "show" : "hide")}
                     ref={sortOptionsRef}
                     style={{
-                        left: `${browseRef.current && sortOptionsRef.current
+                        left: `${Math.max(browseRef.current && sortOptionsRef.current
                             ?  (browseRef.current.offsetLeft + (browseRef.current.offsetWidth / 2)) - (sortOptionsRef.current.offsetWidth / 2)
-                            : 0}px`,
+                            : 0, 0)}px`,
                         top: `${textDivRef.current ? (textDivRef.current.offsetTop + textDivRef.current.offsetHeight) : 0}px`
                     }}
                 >
@@ -66,7 +66,7 @@ export default function Sorter({ searchSelected, sort, setSort, setBrowseRef }) 
                         Object.entries(SORTING).map(([key, value]) => {
                             if (value !== sort) {
                                 return (
-                                    <div className={"sortOption " + (displaySortOption ? "visible" : "hidden")}
+                                    <div className={"sortOption "}
                                         onClick={() => {
                                             setSort(value);
                                             setDisplaySortOptions(false);
