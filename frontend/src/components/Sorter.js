@@ -58,7 +58,7 @@ export default function Sorter({ searchSelected, sort, setSort, setBrowseRef }) 
                     style={{
                         left: `${Math.max(browseRef.current && sortOptionsRef.current
                             ?  (browseRef.current.offsetLeft + (browseRef.current.offsetWidth / 2)) - (sortOptionsRef.current.offsetWidth / 2)
-                            : 0, 0)}px`,
+                            : 0, 10)}px`,
                         top: `${textDivRef.current ? (textDivRef.current.offsetTop + textDivRef.current.offsetHeight) : 0}px`
                     }}
                 >

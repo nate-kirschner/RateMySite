@@ -1,23 +1,22 @@
 @import "./defaults.scss";
 
 .searchDropdown {
-    // background-color: var(--gray1);
-    // margin-top: 10px;
-    border-radius: 5px;
-    // border: 1px solid black;
+    background-color: red;
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
     text-align: left;
     z-index: 99999999999999;
+    box-shadow: 0px 0px 15px 5px var(--dark-mode-gray);
+
 }
 
 .searchOption {
     cursor: pointer;
-    // border: 1px solid black;
+    border: 1px solid var(--gray3);
     background-color: var(--gray1);
     z-index: 99999999999999;
-    margin: 10px;
-    border-radius: 10px;
-    // background-color: var(--blue4);
-    box-shadow: 0px 0px 15px 5px var(--dark-mode-gray);
+
 
     &:hover {
         background-color: var(--yellow1);
