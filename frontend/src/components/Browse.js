@@ -18,23 +18,6 @@ export default function Browse({ selectedPost, setSelectedPost, sort }) {
 
     const location = useLocation();
 
-    const query = useQuery();
-
-    // useEffect(() => {
-    //     const postId = new URLSearchParams(location.search).get('id')
-    //     if (postId && postId != post.id) {
-    //         const body = { 
-    //             postId,
-    //             sort: "id"
-    //         }
-    //         axios.post(config.url + "/get-posts", body).then(resp => {
-    //             console.log("post", resp.data)
-    //             if (resp.data.length !== 0) {
-    //                 setSelectedPost(resp.data[0]);
-    //             }
-    //         })
-    //     }
-    // }, [query])
 
     useEffect(() => {
         setSearchParams({ id: post.id })
@@ -44,7 +27,6 @@ export default function Browse({ selectedPost, setSelectedPost, sort }) {
         const postId = new URLSearchParams(location.search).get('id');
         let body;
         if (postId && postId != post.id) {
-            console.log(postId)
             body = { 
                 postId,
                 sort: "id"
@@ -98,10 +80,4 @@ export default function Browse({ selectedPost, setSelectedPost, sort }) {
             }
         </div>
     )
-}
-
-function useQuery() {
-    const { search } = useLocation();
-  
-    return useMemo(() => new URLSearchParams(search), [search]);
 }

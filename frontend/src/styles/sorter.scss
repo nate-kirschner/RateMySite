@@ -35,6 +35,11 @@
     border-right: 9px solid transparent;
     border-top: 9px solid var(--dark-mode-white);
     top: 0;
+    transition: transform .5s;
+
+    &.flipped {
+        transform: rotateX(180deg);
+    }
 }
 
 .hidden {
@@ -57,7 +62,7 @@
     border-radius: 10px;
     
     &.hide {
-
+        visibility: hidden;
         opacity: 0;
     }
 
