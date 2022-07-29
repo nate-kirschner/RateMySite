@@ -93,16 +93,19 @@ export default function PostSnippet({ username, id, title, description, url, lik
                     <h3 className="postTitle">{title}</h3>
                     <a className="postUrl" href={url} target="_blank" rel="noreferrer noopener">{url}</a>
                 </div>
-                <div className="likesBlock">
-                    <span
-                        className={"arrow arrow-up " + (localStorage.getItem("post:" + id) === "up" && "selected")}
-                        onClick={() => updateVotes("up")}
-                    />
+                <div 
+                    className="likesBlock"
+                    onClick={() => updateVotes("up")}
+                >
+                    <svg
+                        viewBox="0 0 32 29.6"
+                        className={"heart " + (localStorage.getItem("post:" + id) === "up" && "selected")}
+                        
+                    >
+                        <path d="M23.6,0c-3.4,0-6.3,2.7-7.6,5.6C14.7,2.7,11.8,0,8.4,0C3.8,0,0,3.8,0,8.4c0,9.4,9.5,11.9,16,21.2
+                            c6.1-9.3,16-12.1,16-21.2C32,3.8,28.2,0,23.6,0z"/>
+                    </svg> 
                     <h4 className="likesNumber">{postLikes}</h4>
-                    <span
-                        className={"arrow arrow-down " + (localStorage.getItem("post:" + id) === "down" && "selected")} 
-                        onClick={() => updateVotes("down")}
-                    />
                 </div>
                 <div className="siteBlock thumbnail">
                     

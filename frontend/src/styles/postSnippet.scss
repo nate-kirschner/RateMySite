@@ -21,17 +21,21 @@
     grid-template-rows: max-content 80vh max-content 40vh;
     grid-template-columns: max-content 1fr;
     row-gap: 0px;
+    column-gap: 10px;
 
     @include tablet {
         row-gap: 5px;
+        column-gap: 15px;
     }
 
     @include desktop {
         row-gap: 15px;
+        column-gap: 25px;
     }
 
     @include largeDesktop {
         row-gap: 20px;
+        column-gap: 30px;
     }
 
     @include wideScreen {
@@ -43,6 +47,8 @@
     grid-row: 1;
     grid-column: 2;
     position: relative;
+    display: flex;
+    flex-direction: column;
     // z-index: -1;
 }
 
@@ -52,9 +58,9 @@
     font-size: 24px;
     color: var(--dark-mode-white);
 
-    position: absolute;
-    top: 20px;
-    left: 20px;
+    // position: absolute;
+    // top: 20px;
+    // left: 20px;
 
     @include largePhones {
         font-size: 26px;
@@ -93,9 +99,9 @@
     text-decoration: underline;
     font-weight: 500;
 
-    position: absolute;
-    bottom: 15px;
-    left: 20px;
+    // position: absolute;
+    // bottom: 15px;
+    // left: 20px;
 
     @include tablet {
         font-size: 12px;
@@ -123,32 +129,49 @@
 }
 
 .likesBlock {
+    cursor: pointer;
     grid-row: 1;
     grid-column: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 30px;
+    margin-left: 1em;
     // z-index: -1;
+    position: relative;
+    width: 40px;
+
+    &:hover {
+        .heart {
+            animation: pulse 2s ease infinite;
+        }
+        .likesNumber {
+            animation: pulseNumber 2s ease infinite;
+        }
+    }
 
     @include tablet {
-        margin-left: 40px;
+        margin-left: 1.5em;
+        width: 55px;
     }
 
     @include laptop {
-        margin-left: 50px;
+        margin-left: 1.5em;
+        width: 60px;
     }
 
     @include desktop {
-        margin-left: 60px;
+        margin-left: 2em;
+        width: 65px;
     }
 
     @include largeDesktop {
-        margin-left: 70px;
+        margin-left: 2.5em;
+        width: 75px;
     }
 
     @include wideScreen {
-        margin-left: 80px;
+        margin-left: 3em;
+        width: 85px;
     }
 
     .arrow {
@@ -181,32 +204,109 @@
 }
 
 .likesNumber {
+    position: absolute;
     font-size: 14px;
-    margin: .5em 0;
+    --likesNumberFontSize: 14px;
+    margin: 0;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--dark-mode-white);
 
     @include largePhones {
         font-size: 15px;
+        --likesNumberFontSize: 15px;
     }
 
     @include tablet {
         font-size: 17px;
+        --likesNumberFontSize: 17px;
     }
 
     @include laptop {
         font-size: 20px;
+        --likesNumberFontSize: 20px;
     }
 
     @include desktop {
         font-size: 22px;
+        --likesNumberFontSize: 22px;
     }
 
     @include largeDesktop {
         font-size: 24px;
+        --likesNumberFontSize: 24px;
     }
 
     @include wideScreen {
         font-size: 28px;
+        --likesNumberFontSize: 28px;
+    }
+}
+
+.heart {
+    fill: var(--red1);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    --heartWidth: 40px;
+
+    &.selected {
+        fill: var(--red4);
+    }
+
+    @include largePhones {
+        
+    }
+
+    @include tablet {
+        width: 55px;
+        --heartWidth: 55px;
+    }
+
+    @include laptop {
+        width: 60px;
+        --heartWidth: 60px;
+    }
+
+    @include desktop {
+        width: 65px;
+        --heartWidth: 65px;
+    }
+
+    @include largeDesktop {
+        width: 75px;
+        --heartWidth: 75px;
+    }
+
+    @include wideScreen {
+        width: 85px;
+        --heartWidth: 85px;
+    }    
+}
+
+
+@keyframes pulse {
+    0% { 
+        width: var(--heartWidth);
+    }
+    50% { 
+        width: calc(var(--heartWidth) + 5px);
+    }
+    100% { 
+        width: var(--heartWidth);
+    }
+}
+
+@keyframes pulseNumber {
+    0% { 
+        font-size: var(--likesNumberFontSize);
+    }
+    50% { 
+        font-size: calc(var(--likesNumberFontSize) + 2px);
+    }
+    100% { 
+        font-size: var(--likesNumberFontSize);
     }
 }
 
@@ -240,7 +340,7 @@
     grid-template-rows: max-content 1fr max-content;
     
     @include largePhones {
-        width: calc(97% - 10em);
+        width: calc(97% - 2em);
     }
 
     @include laptop {
@@ -265,7 +365,9 @@
 }
 
 .commentInput {
-    width: 80%;
+    width: 60%;
+    min-width: 60%;
+    max-width: 60%;
     border-radius: 10px;
     outline: none;
     margin: 1em 0;
@@ -277,6 +379,12 @@
 
     &::placeholder {
         color: rgb(59, 57, 57);
+    }
+
+    @include tablet {
+        width: 80%;
+        min-width: 80%;
+        max-width: 80%;
     }
 }
 
@@ -446,6 +554,7 @@
 
 .prev, .next {
     position: relative;
+    cursor: pointer;
   
     width:50%;
     height:100%;
@@ -459,7 +568,7 @@
         // left:25%;
         // right:25%;
         height:2px;
-        background-color: var(--dark-mode-white);
+        background-color: var(--gray4);
         top: 50%;
         width: 65%;
     }
@@ -467,7 +576,7 @@
     &:hover {
     &:before,
     &:after {
-        background-color: var(--gray4);
+        background-color: var(--dark-mode-white);
     }
     }
       
