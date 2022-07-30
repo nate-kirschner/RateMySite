@@ -44,7 +44,7 @@ export default function SearchDropdown({ searchText, style, setSelectedPost, set
                             }}>
                             <h3 className="title">{post.title}</h3>
                             <p className="url">{post.url}</p>
-                            <h4 className="description">{post.description}</h4>
+                            {/* <h4 className="description">{post.description}</h4> */}
                         </div>
                     )
                 })

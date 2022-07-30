@@ -60,9 +60,7 @@ export default function Post() {
 
             <iframe className="iframe" src={url} title="title" />
 
-            {/* <div className="submitDiv"> */}
-                <button className="submit" onClick={() => makePost()}>Submit</button>
-            {/* </div> */}
+            <button className="submit" onClick={() => makePost()}>Submit</button>
 
 
         </div>

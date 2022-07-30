@@ -20,7 +20,8 @@ export default function Browse({ selectedPost, setSelectedPost, sort }) {
 
 
     useEffect(() => {
-        setSearchParams({ id: post.id })
+        setSearchParams({ id: post.id });
+        window.scrollTo(0, 0);
     }, [post])
 
     useEffect(() => {

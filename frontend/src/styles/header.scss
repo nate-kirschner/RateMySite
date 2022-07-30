@@ -11,9 +11,22 @@
     align-items: baseline;
     z-index: 999;
     box-shadow: 0 5px 5px 5px black;
+    padding-bottom: 10px;
 
     @include largePhones {
         justify-content: center;
+    }
+
+    @include tablet {
+        padding-bottom: 3px;
+    }
+
+    @include laptop {
+        padding-bottom: 4px;
+    }
+
+    @include largeDesktop {
+        padding-bottom: 0;
     }
 
     &.show {

@@ -47,15 +47,6 @@ export default function Comments({ commentsArr, postId, likes }) {
                 <span className="date">{comment.date}</span>
                 <span className="text">{comment.text}</span>
                 <div className="commentLikesDiv">
-                    {/* <span 
-                        className={"arrow arrow-up " + (localStorage.getItem("post:" + postId + ":comment:" + index) === "up" && "selected")} 
-                        onClick={() => updateComment(index, comment.likes, "up")}
-                    />
-                    <span className="likesCount">{comment.likes}</span>
-                    <span 
-                        className={"arrow arrow-down " + (localStorage.getItem("post:" + postId + ":comment:" + index) === "down" && "selected")} 
-                        onClick={() => updateComment(index, comment.likes, "down")}
-                    /> */}
                     <svg
                         viewBox="0 0 32 29.6"
                         className={"heart " + (localStorage.getItem("post:" + postId + ":comment:" + index) === "up" && "selected")}
