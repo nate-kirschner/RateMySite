@@ -90,7 +90,10 @@ export default function PostSnippet({ username, id, title, description, url, lik
         <div className={"postSnippet " + (iframeLoaded ? "loaded" : "")}>
             <div className="mainBlock">
                 <div className="titleBlock">
-                    <h3 className="postTitle">{title}</h3>
+                    <div className="titleTooltipBlock">
+                        <h3 className="postTitle">{title}</h3>
+                        <span class="tooltip" data-tooltip={description}>?</span>
+                    </div>
                     <a className="postUrl" href={url} target="_blank" rel="noreferrer noopener">{url}</a>
                 </div>
                 <div 

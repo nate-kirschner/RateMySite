@@ -51,8 +51,14 @@
     flex-direction: column;
 }
 
-.postTitle {
+.titleTooltipBlock {
     margin: 0 auto 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.postTitle {
+    margin: 0;
     text-align: left;
     font-size: 24px;
     color: var(--dark-mode-white);
@@ -607,4 +613,67 @@
     &:before, &:after {
         right: 30%;
     }
+  }
+
+
+
+
+
+  .tooltip {
+
+    position: relative;
+    background: var(--dark-mode-white);
+    padding: 5px 12px;
+    margin: 5px;
+    font-size: 15px;
+    border-radius: 100%;
+    color: black;
+    width: 5px;
+    height: max-content;
+  }
+  
+  .tooltip:before,
+  .tooltip:after {
+    z-index: 99999;
+    position: absolute;
+    content: '';
+    opacity: 0;
+    transition: all 0.4s ease;
+  }
+  
+  .tooltip:before {
+    border-width: 0 8px 10px 8px;
+    border-style: solid;
+    border-color: transparent transparent var(--dark-mode-white) transparent;
+    top: 40px;
+    left: 7px;
+    transform: translateY(-20px);
+  }
+  
+  .tooltip:after {
+    content: attr(data-tooltip);
+    background: var(--dark-mode-white);
+    width: max-content;
+    max-width: 270px;
+
+    @include tablet {
+        max-width: 350px;
+    }
+    min-width: 150px;
+    text-align: left;
+    height: max-content;
+    font-size: 13px;
+    font-weight: 300;
+    top: 49px;
+    right: 0;    
+    padding: 10px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    transform: translateY(-20px);
+  }
+  
+  .tooltip:hover::before,
+  .tooltip:hover::after {
+    opacity: 1;
+    transform: translateY(-2px);
   }
