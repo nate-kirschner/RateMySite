@@ -135,13 +135,16 @@
     margin-left: 1em;
     position: relative;
     width: 40px;
+    
 
     &:hover {
         .heart {
-            animation: pulse 2s ease infinite;
+            // animation: pulse 2s ease infinite;
+            width: calc(var(--heartWidth) + 5px);
         }
         .likesNumber {
-            animation: pulseNumber 2s ease infinite;
+            // animation: pulseNumber 2s ease infinite;
+            font-size: calc(var(--likesNumberFontSize) + 3px);
         }
     }
 
@@ -207,6 +210,7 @@
     top: 50%;
     transform: translateY(-50%);
     color: var(--dark-mode-white);
+    transition: font-size 1s;
 
     @include largePhones {
         font-size: 15px;
@@ -246,6 +250,7 @@
     transform: translateY(-50%);
     width: 40px;
     --heartWidth: 40px;
+    transition: width 1s;
 
     &.selected {
         fill: var(--red4);
