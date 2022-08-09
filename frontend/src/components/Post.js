@@ -16,7 +16,7 @@ export default function Post() {
             const body = {
                 title, description, url, hasCommentSection
             }
-            axios.post(config.makePostUrl).then(resp => {
+            axios.post(config.makePostUrl, body).then(resp => {
                 if (resp.data.status === 200) {
                     alert("Success!");
                     setTitle("");
