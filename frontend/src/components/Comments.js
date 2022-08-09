@@ -37,7 +37,7 @@ export default function Comments({ commentsArr, postId, likes }) {
 
         commentsArr[index].likes = newLikes;
         const body = { likes, comments: commentsArr, postId };
-        axios.post(config.url + "/update-post", body);
+        axios.post(config.updatePostUrl, body);
         setUpdate(!update);
     }
 

@@ -23,7 +23,7 @@ export default function SearchDropdown({ searchText, style, setSelectedPost, set
                 sort: "search",
                 searchString: searchText
             }
-            axios.post(config.url + "/get-posts", body).then(resp => {
+            axios.post(config.getPostUrl, body).then(resp => {
                 setPosts(resp.data);
             })
         } else {

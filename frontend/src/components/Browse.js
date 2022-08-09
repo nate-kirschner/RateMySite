@@ -41,7 +41,7 @@ export default function Browse({ selectedPost, setSelectedPost, sort }) {
         }
         
         if (postIndex >= 0) {
-            axios.post(config.url + "/get-posts", body).then(resp => {
+            axios.post(config.getPostUrl, body).then(resp => {
                 const gottenPosts = resp.data;
                 if (gottenPosts.length === 0) {
                     setSearchParams({});

@@ -33,7 +33,7 @@ export default function PostSnippet({ username, id, title, description, url, lik
             setCommentState([...commentState, commentObj])
 
             const body = { likes: postLikes, comments: [...commentState, commentObj], postId: id };
-            axios.post(config.url + "/update-post", body);
+            axios.post(config.updatePostUrl, body);
             setNewCommentText("");
         }
     }
@@ -76,7 +76,7 @@ export default function PostSnippet({ username, id, title, description, url, lik
             comments: commentState, 
             postId: id 
         };
-        axios.post(config.url + "/update-post", body)
+        axios.post(config.updatePostUrl, body)
         setPostLikes(newLikes);
     }
 
