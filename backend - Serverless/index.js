@@ -20,7 +20,17 @@ exports.handler = async (event) => {
         if (err) throw err;
     });
     
-    const response = await makePost(con, params);
+    const body = await makePost(con, params);
+    
+    const response = {
+        statusCode: 200,
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        },
+        isBase64Encoded: false,
+        body: JSON.stringify(body)
+    }
 
     con.end();
     
