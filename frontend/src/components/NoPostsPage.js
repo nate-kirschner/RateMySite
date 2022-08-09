@@ -20,7 +20,7 @@ export default function NoPostsPage({ postIndex, setPostIndex }) {
                     
                 </div>
                 <div className="likesBlock">
-                <svg
+                    <svg
                         viewBox="0 0 32 29.6"
                         className={"heart " }
                         

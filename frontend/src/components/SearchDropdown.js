@@ -18,18 +18,26 @@ export default function SearchDropdown({ searchText, style, setSelectedPost, set
     }, [])
 
     useEffect(() => {
-        if (searchText !== "") {
-            const body = {
-                sort: "search",
-                searchString: searchText
-            }
-            axios.post(config.getPostUrl, body).then(resp => {
-                setPosts(resp.data);
-            })
-        } else {
-            setPosts([]);
-        }
+        
     }, [searchText])
+
+    useEffect(() => {
+        const delayDebounceFn = setTimeout(() => {
+            if (searchText !== "") {
+                const body = {
+                    sort: "search",
+                    searchString: searchText
+                }
+                axios.post(config.getPostUrl, body).then(resp => {
+                    setPosts(resp.data);
+                })
+            } else {
+                setPosts([]);
+            }
+        }, 3000)
+    
+        return () => clearTimeout(delayDebounceFn)
+      }, [searchText])
 
     return (
         <div className="searchDropdown" style={style} ref={dropdownRef} >
