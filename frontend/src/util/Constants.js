@@ -42,3 +42,6 @@ export const SORTING = {
         keyName: "Random"
     }
 }
+
+export const makePostUrl = "https://zljy7i774iga7dtrjcyrad34zy0nkjsq.lambda-url.us-east-2.on.aws/";
+export const getPostUrl = "https://m42o3g2hgrx7exd4swsvm4wcym0jqxsf.lambda-url.us-east-2.on.aws/";

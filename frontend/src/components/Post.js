@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react"
-import config from '../config';
+import { useState } from "react"
 import axios from 'axios';
+import { makePostUrl } from "../util/Constants";
 
 import '../styles/post.scss';
 
@@ -16,7 +16,7 @@ export default function Post() {
             const body = {
                 title, description, url, hasCommentSection
             }
-            axios.post(config.url + "/make-post", body).then(resp => {
+            axios.post(makePostUrl, body).then(resp => {
                 if (resp.data.status === 200) {
                     alert("Success!");
                     setTitle("");
