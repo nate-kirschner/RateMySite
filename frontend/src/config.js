@@ -6,8 +6,8 @@ config.url = "http://localhost:3002/backend";
 // config.getPostUrl = "http://localhost:3002/backend/get-posts";
 // config.updatePostUrl = "http://localhost:3002/backend/update-post";
 
-config.makePostUrl = "https://zljy7i774iga7dtrjcyrad34zy0nkjsq.lambda-url.us-east-2.on.aws/";
-config.getPostUrl = "https://m42o3g2hgrx7exd4swsvm4wcym0jqxsf.lambda-url.us-east-2.on.aws/";
-config.updatePostUrl = "https://zlun7o2gzmc52fcrmhrlaymxua0tycmd.lambda-url.us-east-2.on.aws/";
+config.makePostUrl = "https://abxgxsrzff.execute-api.us-east-2.amazonaws.com/RateMySite/makepost";
+config.getPostUrl = "https://abxgxsrzff.execute-api.us-east-2.amazonaws.com/RateMySite/getpost";
+config.updatePostUrl = "https://abxgxsrzff.execute-api.us-east-2.amazonaws.com/RateMySite/updatepost";
 
 export default config;
