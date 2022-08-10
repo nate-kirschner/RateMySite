@@ -18,7 +18,7 @@
     display: grid;
 
     margin-top: 20px;
-    grid-template-rows: max-content 80vh max-content 40vh;
+    grid-template-rows: max-content 80vh max-content 20vh;
     grid-template-columns: max-content 1fr;
     row-gap: 0px;
     column-gap: 10px;
@@ -171,34 +171,6 @@
     @include wideScreen {
         margin-left: 3em;
         width: 85px;
-    }
-
-    .arrow {
-        transform: scale(.6);
-
-        @include largePhones {
-            transform: scale(.65);
-        }
-
-        @include tablet {
-            transform: scale(.7);
-        }
-    
-        @include laptop {
-            transform: scale(.8);
-        }
-    
-        @include desktop {
-            transform: scale(.9);
-        }
-    
-        @include largeDesktop {
-            transform: scale(1.2);
-        }
-    
-        @include wideScreen {
-            transform: scale(1.4);
-        }
     }
 }
 
@@ -402,144 +374,6 @@
     }
 }
 
-
-//////////////////////////////////////////////////////////////
-// Arrows
-//////////////////////////////////////////////////////////////
-.arrow {
-    width: 30px;
-    height: 30px;
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    
-    &:before,
-    &:after{
-        content:'';
-        border-color:transparent;
-        border-style:solid;
-        position: absolute;
-    }
-    .curve{
-        position: absolute;
-        overflow: hidden;
-        &:before{
-        content:'';
-        position:absolute;
-        }
-    }
-}
-
-.arrow-up {
-    &:hover, &.selected {
-        &:before {
-            background-color: rgb(67, 135, 67);
-        }
-        &:after {
-            border-bottom-color:rgb(67, 135, 67);
-        }
-    }
-    &:before{ 
-        border: none;
-        background-color: var(--dark-mode-white);
-        height: 50%;
-        width: 30%;
-        top: 50%;
-        left: calc(50% - calc(30% / 2));
-    }
-    &:after { 
-        left: 0;
-        top: -50%;
-        border-width: 15px 15px;
-        border-bottom-color:var(--dark-mode-white);
-    }
-}
-
-
-
-.arrow-down{
-    &:hover, &.selected {
-        &:before {
-            background-color: rgb(135, 67, 67);
-        }
-        &:after {
-            border-top-color:rgb(135, 67, 67);
-        }
-    }
-    &:before{ 
-        border: none;
-        background-color: var(--dark-mode-white);
-        height: 50%;
-        width: 30%;
-        top: 0;
-        left: calc(50% - calc(30% / 2));
-    }
-    &:after { 
-        left: 0;
-        top: 50%;
-        border-width: 15px 15px;
-        border-top-color:var(--dark-mode-white);
-    }
-}
-
-
-.scrollArrow {
-    display: inline-block;
-    width: 50px;
-    height: 50px;
-    border: 3px solid var(--gray4);
-    border-radius: 50%;
-    // margin-left: 0.75em;
-    transform: translateY(-50%);
-    background-color: var(--gray1);
-    transition: transform .3s;
-    cursor: pointer;
-    z-index: 100;
-    box-shadow: 0 0 10px 2px var(--gray8);
-
-    &.hasNext {        
-        &:hover {
-            &:after {
-                margin-top: 12px;
-                transition: margin .3s;
-            }
-        }
-    }
-
-    &.noNext {
-        visibility: hidden;
-    }
-}
-  
-.scrollArrow:after {
-    content: '';
-    display: inline-block;
-    margin-top: 8px;
-    width: 20px;
-    height: 20px;
-    border-top: 3px solid var(--gray8);
-    border-right: 3px solid var(--gray8);
-    -moz-transform: rotate(135deg);
-    -webkit-transform: rotate(135deg);
-    transform: rotate(135deg);
-    transition: margin .3s;
-    
-}
-
-.scrollArrow.up {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    transform: translateY(-50%) rotate(90deg);
-}
-
-.scrollArrow.down {
-    position: absolute;
-    right: -15px;
-    top: 50%;
-    transform: translateX(-50%) rotate(270deg);
-}
-
 .pageButtons {
     grid-row: 4;
     grid-column: 1 / 3;
@@ -547,83 +381,6 @@
     overflow: hidden;
     margin: 40px 0;
 }
-
-
-.prev, .next {
-    position: relative;
-    cursor: pointer;
-  
-    width:50%;
-    height:100%;
-    transition: background-color .4s ease-out;
-    
-    &:before,
-    &:after {
-        transition: background-color .4s ease-out;
-        content:"";
-        position:absolute;
-        height:2px;
-        background-color: var(--gray4);
-        top: 50%;
-        width: 65%;
-    }
-        
-    &:hover {
-    &:before,
-    &:after {
-        background-color: var(--dark-mode-white);
-    }
-    }
-      
-    
-    
-  }
-
-  .prev {
-
-    &:after {
-      transform-origin: 0 0;
-      transform: rotate(-50deg) translate(-1px);
-      border-radius: 10px;
-    }
-    
-    &:before {
-      transform-origin: 0 100%; 
-      transform: rotate(50deg) translate(-1px);
-      border-radius: 10px;
-    }
-
-    &:before, &:after {
-        left: 30%;
-    }
-
-    &.noNext {
-        visibility: hidden;
-    }
-  }
-
-  .next {
-  
-    &:after {
-      transform-origin: 100% 100%;
-      transform: rotate(-50deg) translate(1px);
-      border-radius: 10px;
-    }
-    
-    &:before {
-      transform-origin: 100% 0;
-      transform: rotate(50deg) translate(1px);
-      border-radius: 10px;
-    }
-
-    &:before, &:after {
-        right: 30%;
-    }
-  }
-
-
-
-
 
   .tooltip {
 

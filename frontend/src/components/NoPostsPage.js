@@ -36,14 +36,7 @@ export default function NoPostsPage({ postIndex, setPostIndex }) {
                     </div>
                 </div>
                 <div className="pageButtons">
-                    <div 
-                        className={"prev " + (postIndex > 0 ? "hasNext" : "noNext")} 
-                        onClick={() => setPostIndex(postIndex - 1)} 
-                    />
-                    <div 
-                        className={"next hasNext "} 
-                        onClick={() => setPostIndex(postIndex + 1)} 
-                    />
+                    
                 </div>
                 
             </div>

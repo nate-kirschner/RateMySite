@@ -13,6 +13,8 @@ export default function Browse({ selectedPost, setSelectedPost, sort }) {
     const [post, setPost] = useState([]);
     const [postIndex, setPostIndex] = useState(0);
     const [noMorePosts, setNoMorePosts] = useState(false);
+    
+    const [mounted, setMounted] = useState(false);
 
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -71,6 +73,10 @@ export default function Browse({ selectedPost, setSelectedPost, sort }) {
         }
     }, [selectedPost])
 
+    useEffect(() => {
+        setMounted(true);
+    }, [location]);
+
     return (
         <div className="browse mainpage">
             {
@@ -79,6 +85,15 @@ export default function Browse({ selectedPost, setSelectedPost, sort }) {
                 :
                 <PostSnippet {...post} postIndex={postIndex} setPostIndex={setPostIndex} />
             }
+            <div className={"swipeButtons " + (mounted && "mounted")}>
+                <div 
+                    className="buttonWrapper" onClick={() => setPostIndex(postIndex - 1)} >
+                    <div className={"left button " + (postIndex > 0 ? "hasNext" : "noNext")} />
+                </div>
+                <div className="buttonWrapper" onClick={() => setPostIndex(postIndex + 1)} >
+                    <div className="right button" />
+                </div>
+            </div>
         </div>
     )
 }

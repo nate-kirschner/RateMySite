@@ -60,20 +60,3 @@
 .comment .likesCount {
     line-height: 1em;
 }
-
-.comment .arrow {
-    width: 1em;
-    height: 1em;
-}
-
-.arrow-up, .arrow-down {
-    margin: 0;
-}
-
-.comment .arrow-up:after {
-    border-width: .5em .5em;
-}
-
-.comment .arrow-down:after {
-    border-width: .5em .5em;
-}

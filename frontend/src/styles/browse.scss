@@ -34,3 +34,166 @@
         height: 125px;
     }
 }
+
+.swipeButtons {
+    position: fixed;
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 25px;
+    width: 150px;
+    height: 50px;
+    background-color: var(--gray3);
+    border-radius: 30px;
+    display: flex;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    transform: translateY(75px);
+    transition: all 1s;
+    opacity: 0;
+    z-index: 9999999999;
+
+    &.mounted {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    @include largePhones {
+
+    }
+
+    @include tablet {
+        width: 200px;
+        height: 70px;
+        border-radius: 40px;
+    }
+
+    @include laptop {
+        bottom: 30px;
+        width: 200px;
+        height: 70px;
+    }
+
+    @include desktop {
+        bottom: 35px;
+    }
+
+    @include largeDesktop {
+
+    }
+    
+    @include wideScreen {
+
+    }
+}
+
+.buttonWrapper {
+    width: 75px;
+    height: 50px;
+    cursor: pointer;
+
+    &:hover {
+        .left:before, .left:after {
+            background-color: var(--dark-mode-white);
+        }
+
+        .right:before, .right:after {
+            background-color: var(--dark-mode-white);
+        }
+    }
+
+    @include largePhones {
+
+    }
+
+    @include tablet {
+        width: 75px;
+        height: 50px;
+    }
+
+    @include laptop {
+
+    }
+
+    @include desktop {
+
+    }
+
+    @include largeDesktop {
+
+    }
+    
+    @include wideScreen {
+        
+    }
+}
+
+.left, .right {
+    transition: background-color .4s ease-out;
+    
+    &:before, &:after {
+        transition: background-color .4s ease-out;
+        content:"";
+        position:absolute;
+        height:2px;
+        background-color: var(--gray8);
+        top: 25px;
+        width: 30px;
+
+        @include tablet {
+            top: 35px;
+            width: 40px;
+        }
+        
+    }
+
+
+}
+
+.left {
+    &:after {
+      transform-origin: 0 0;
+      transform: rotate(-50deg) translate(-1px);
+      border-radius: 10px;
+    }
+    
+    &:before {
+      transform-origin: 0 100%; 
+      transform: rotate(50deg) translate(-1px);
+      border-radius: 10px;
+    }
+
+    &:before, &:after {
+        left: 25px;
+
+        @include tablet {
+            left: 30px;
+        }
+    }
+
+    &.noNext {
+        visibility: hidden;
+    }
+  }
+
+  .right {
+  
+    &:after {
+      transform-origin: 100% 100%;
+      transform: rotate(-50deg) translate(1px);
+      border-radius: 10px;
+    }
+    
+    &:before {
+      transform-origin: 100% 0;
+      transform: rotate(50deg) translate(1px);
+      border-radius: 10px;
+    }
+
+    &:before, &:after {
+        right: 25px;
+
+        @include tablet {
+            right: 30px;
+        }
+    }
+  }
