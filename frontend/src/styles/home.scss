@@ -25,6 +25,10 @@
     @include laptop {
         font-size: 46px;
     }
+
+    .logoText {
+        color: var(--yellow);
+    }
 }
 
 .home p {

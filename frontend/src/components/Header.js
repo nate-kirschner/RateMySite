@@ -7,7 +7,7 @@ import '../styles/header.scss';
 import SearchDropdown from './SearchDropdown';
 import Sorter from './Sorter';
 
-export default function Header({ setSelectedPost, sort, setSort, showHeader }) {
+export default function Header({ setSelectedPost, sort, setSort, showHeader, sliderDimensions, setSliderDimensions }) {
 
     const location = useLocation();
 
@@ -18,7 +18,7 @@ export default function Header({ setSelectedPost, sort, setSort, showHeader }) {
     const sliderRef = useRef();
     const [searchDropdownRef, setSearchDropdownRef] = useState();
 
-    const [sliderDimensions, setSliderDimensions] = useState({});
+    // const [sliderDimensions, setSliderDimensions] = useState({});
     const [searchSelected, setSearchSelected] = useState(false);
     const [searchText, setSearchText] = useState("");
 
@@ -86,6 +86,7 @@ export default function Header({ setSelectedPost, sort, setSort, showHeader }) {
 
     return (
         <div className={"header " + (showHeader ? "show" : "hide")}>
+
             <h2 className={`menuLink ${searchSelected && "searchSelected"}`}  >
                 <Link to="/browse">
                     <Sorter searchSelected={searchSelected} sort={sort} setSort={setSort} setBrowseRef={setBrowseRef} />

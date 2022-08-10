@@ -14,7 +14,7 @@ export default function Home({ setShowHeader }) {
 
     return (
         <div className="home mainpage">
-            <h2 className="title">Hi! Welcome to RateMySite.</h2>
+            <h2 className="title">Hi! Welcome to <span className="logoText">Rate My Site</span>.</h2>
             <p className="browseText">Browse personal websites and leave constructive feedback.</p>
             <button className="browseButton" onClick={() => goToPage("/browse")}>Browse Websites</button>
             
