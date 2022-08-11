@@ -67,6 +67,10 @@ export default function Browse({ selectedPost, setSelectedPost, sort }) {
     }, [postIndex, sort])
 
     useEffect(() => {
+        console.log("params changed");
+    }, [searchParams])
+
+    useEffect(() => {
         if (selectedPost !== null) {
             setPost(selectedPost);
             setSelectedPost(null);

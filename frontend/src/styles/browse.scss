@@ -106,8 +106,9 @@
     }
 
     @include tablet {
-        width: 75px;
-        height: 50px;
+        width: 100px;
+        height: 70px;
+        
     }
 
     @include laptop {

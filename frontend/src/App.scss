@@ -2,10 +2,7 @@
 
 .App {
   text-align: center;
-  // background: linear-gradient(351deg, rgba(126,126,126,1) 9%, rgba(70,185,235,1) 81%);
-  // background: linear-gradient(351deg, var(--gray) 0%, var(--blue) 30%, var(--blue) 70%, var(--gray) 100%);
-  // background: linear-gradient(351deg, rgb(143, 142, 142) 0%, rgb(214, 212, 212) 30%, rgb(214, 212, 212) 70%, rgb(143, 142, 142) 100%);
-  min-height: 100vh;
+  min-width: 100vw;
   height: max-content;
   // width: 100vw;
 }
@@ -16,11 +13,12 @@
 }
 
 .logo {
+  position: fixed;
   display: none;
 
   @include laptop {
       display: block;
-      position: absolute;
+      // position: absolute;
       width: 180px;
       top: 30px;
       left: 20px;

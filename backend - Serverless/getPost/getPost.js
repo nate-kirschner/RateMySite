@@ -14,7 +14,7 @@ async function getPost(db, params) {
 function getPostsByTitleOrURL(db, params) {
     const { searchString } = params;
     return new Promise((resolve, reject) => {
-        db.query(`select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 and title like '%${searchString}%' or url like '%${searchString}%'`, 
+        db.query(`select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 and (title like '%${searchString}%' or url like '%${searchString}%')`, 
         [], 
         (err, result) => {
             if (err) {

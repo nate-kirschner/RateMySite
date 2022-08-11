@@ -38,7 +38,11 @@ async function makePostDao(db, params) {
             if (err) {
                 reject(err);
             } else {
-                resolve({ status: 200 });
+                resolve({
+                    title,
+                    url,
+                    postId: result.insertId
+                });
             }
         })
       });
