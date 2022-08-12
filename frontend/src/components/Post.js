@@ -1,8 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import axios from 'axios';
 import config from '../config';
 
 import '../styles/post.scss';
+import PostPopup from "./PostPopup";
 
 export default function Post() {
 
@@ -10,43 +11,79 @@ export default function Post() {
     const [url, setUrl] = useState("https://");
     const [description, setDescription] = useState("");
     const [hasCommentSection, setHasCommentSection] = useState(true);
+
+    const [postId, setPostId] = useState(null);
+
+    const [popupOpen, setPopupOpen] = useState(false);
+    const [wasSubmitClicked, setWasSubmitClicked] = useState(false);
     
     const makePost = () => {
-        if (title !== "" || description !== "") { // TODO or iframe not rendered
+        if (title !== "" || url !== "" || url !== "https://") { // TODO or iframe not rendered
             const body = {
                 title, description, url, hasCommentSection
             }
             axios.post(config.makePostUrl, body).then(resp => {
                 if (resp.data.status === 200) {
-                    alert("Success!");
-                    setTitle("");
-                    setUrl("https://");
-                    setDescription("");
+                    setPostId(resp.data.postInfo.postId);
                 } else {
-                    alert("Uh oh! There was an error making this post :(");
+                    setPostId("Invalid");
                 }
             })
         } else {
-            alert("Make sure to fill in all required fields!");
+            setPostId("Invalid");
+        }
+    }
+
+    useEffect(() => {
+        if (popupOpen) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'auto'
+            if (postId) {
+                setTitle("");
+                setUrl("https://");
+                setDescription("");
+                setPostId(null);
+                setWasSubmitClicked(false)
+            }
+        }
+    }, [popupOpen])
+
+    const submitClicked = () => {
+        if (title !== "" && url !== "" && url !== "https://") {
+            setPopupOpen(true);
+        } else {
+            setWasSubmitClicked(true);
         }
     }
 
     return (
-        <div className="post mainpage">
+        <div className={"post mainpage " + (popupOpen && "preventScroll")}>
             <div className="infoBlock">
                 <div className="titleBlock postBlock">
                     <span className="titleSpan label">Post Title</span>
-                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} />
+                    <input type="text"
+                        className={(wasSubmitClicked && title === "" && "highlightRed")}
+                        value={title} 
+                        onChange={(e) => setTitle(e.target.value)} 
+                    />
                 </div>
 
                 <div className="urlBlock postBlock">
                     <span className="urlSpan label">Website Url</span>
-                    <input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+                    <input type="text" 
+                        className={(wasSubmitClicked && (url === "" || url === "https://") && "highlightRed")}
+                        value={url} 
+                        onChange={(e) => setUrl(e.target.value)} 
+                    />
                 </div>
 
                 <div className="descriptionBlock postBlock">
                     <span className="descSpan label">Description</span>
-                    <textarea value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <textarea 
+                        value={description} 
+                        onChange={(e) => setDescription(e.target.value)} 
+                    />
                 </div>
 
                 <div className="checkBlock postBlock">
@@ -60,9 +97,12 @@ export default function Post() {
 
             <iframe className="iframe" src={url} title="title" />
 
-            <button className="submit" onClick={() => makePost()}>Submit</button>
+            <button className="submit" onClick={() => submitClicked()}>Submit</button>
 
-
+            {
+                popupOpen && 
+                    <PostPopup title={title} description={description} url={url} hasCommentSection={hasCommentSection} id={postId} setPopupOpen={setPopupOpen} makePost={makePost} />
+            }
         </div>
     )
 }

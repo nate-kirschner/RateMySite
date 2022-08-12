@@ -10,7 +10,7 @@ async function makePost(db, params, callback) {
     }
     try {
         dao.makePost(db, { title, description, url, hasCommentSection, editKey }, (result) => {
-            callback({ status: 200 })
+            callback({ status: 200, postInfo: {title, url, postId: result.insertId }})
         })
     } catch (err) {
         console.log("Error making post ", err);

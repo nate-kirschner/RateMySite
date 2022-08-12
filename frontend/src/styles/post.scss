@@ -3,6 +3,11 @@
 .post {
     width: 100vw;
     margin-top: 2em;
+    overflow: auto;
+
+    &.preventScroll {
+        overflow: hidden;
+    }
 }
 
 .infoBlock {
@@ -47,6 +52,10 @@
     outline: none;
     color: var(--dark-mode-white);
     border: 1px solid var(--dark-mode-white);
+
+    &.highlightRed {
+        border: 1px solid var(--red5);
+    }
 
     @include tablet {
         width: 80%;

@@ -49,7 +49,7 @@ exports.handler = async (event, context, callback) => {
             "Access-Control-Allow-Origin": "*"
         },
         isBase64Encoded: false,
-        body: JSON.stringify({ status: 200 })
+        body: JSON.stringify({ status: 200, postInfo })
     }
       
     return returnVal;

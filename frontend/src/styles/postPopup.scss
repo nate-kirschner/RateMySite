@@ -1,0 +1,123 @@
+@import './defaults.scss';
+
+.postPopup {
+    overflow: scroll;
+    position: fixed;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 80%;
+    height: 400px;
+    margin: 0 10%;
+    background-color: var(--dark-mode-white);
+    border-radius: 20px;
+    z-index: 9999;
+    transition: all 1s;
+
+    &.mount {
+        box-shadow: 5px 5px 50px 50px var(--dark-mode-gray);
+        opacity: 1;
+    }
+
+    &.unmount {
+        box-shadow: none;
+        opacity: 0;
+    }
+
+    @include tablet {
+        // top: 130px;\
+        width: 80%;
+        margin: 0 10%;
+        height: 350px;
+    }
+
+    @include laptop {
+        width: 70%;
+        margin: 0 15%;
+    }
+
+    @include largeDesktop {
+        width: 50%;
+        margin: 0 25%;
+        height: 450px;
+    }
+}
+
+.postPopup h3 {
+    @include desktop {
+        font-size: 22px;
+    }
+
+    @include largeDesktop {
+        font-size: 28px;
+    }
+}
+
+.postPopup p {
+    margin: 10px;
+    font-size: 16px;
+
+    @include largeDesktop {
+        font-size: 25px;
+    }
+}
+
+.exampleSubmission {
+    border: 1px solid black;
+    width: 90%;
+    margin: auto;
+
+    .title {
+        font-weight: 600;
+    }
+
+    .url {
+
+    }
+}
+
+.postPopup .buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 20px 0;
+
+    button {
+        width: 40%;
+        border-radius: 20px;
+        border: none;
+        cursor: pointer;
+        color: var(--dark-mode-gray2);
+        padding: 1em;
+
+        @include largePhones {
+            width: 35%;
+        }
+
+        @include tablet {
+            width: 20%;
+        }
+
+        @include largeDesktop {
+            font-size: 20px;
+        }
+    }
+
+    .submitButton {
+        background-color: var(--green2);
+    }
+
+    .cancelButton {
+       background-color: var(--red3);
+    }
+
+    .close {
+        background-color: var(--gray3);
+        
+    }
+}
+
+
+.postPopup a {
+    margin: 10px;
+    display: block;
+}
