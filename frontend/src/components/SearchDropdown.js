@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router';
 
 import '../styles/searchDropdown.scss';
 
-export default function SearchDropdown({ searchText, style, setSelectedPost, setSearchDropdownRef, deselectSearchBar }) {
+export default function SearchDropdown({ searchText, style, setPostList, setSearchDropdownRef, deselectSearchBar }) {
 
     let navigate = useNavigate();
 
@@ -46,7 +46,7 @@ export default function SearchDropdown({ searchText, style, setSelectedPost, set
                     return (
                         <div className="searchOption"
                             onClick={() => {
-                                setSelectedPost(post); 
+                                setPostList([post]); 
                                 deselectSearchBar(); 
                                 navigate('/browse');
                             }}>

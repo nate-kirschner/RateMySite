@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import '../styles/noPostsPage.scss';
 import '../styles/postSnippet.scss';
 
-export default function NoPostsPage({ postIndex, setPostIndex }) {
+export default function NoPostsPage() {
 
     const [loaded, setLoaded] = useState(false);
 

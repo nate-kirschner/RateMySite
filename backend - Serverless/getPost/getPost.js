@@ -43,8 +43,9 @@ function getPostById(db, params) {
 
 function getPostsSorted(db, params) {
     const { startIdx, endIdx, sort } = params;
+    const limit = endIdx - startIdx;
     return new Promise((resolve, reject) => {
-        db.query(`select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 order by ${sort.type} ${sort.direction} limit 1 offset ?`, [startIdx], (err, result) => {
+        db.query(`select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 order by ${sort.type} ${sort.direction} limit ? offset ?`, [limit, startIdx], (err, result) => {
             if (err) {
                 reject(err);
             } else {

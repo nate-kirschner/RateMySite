@@ -7,7 +7,7 @@ import '../styles/header.scss';
 import SearchDropdown from './SearchDropdown';
 import Sorter from './Sorter';
 
-export default function Header({ setSelectedPost, sort, setSort, showHeader, sliderDimensions, setSliderDimensions }) {
+export default function Header({ setPostList, sort, setSort, showHeader, sliderDimensions, setSliderDimensions }) {
 
     const location = useLocation();
 
@@ -133,7 +133,7 @@ export default function Header({ setSelectedPost, sort, setSort, showHeader, sli
                             left: sliderRef.current.offsetLeft,
                             top: sliderRef.current.offsetTop + sliderRef.current.offsetHeight
                         }}
-                        setSelectedPost={setSelectedPost}
+                        setPostList={setPostList}
                         setSearchDropdownRef={setSearchDropdownRef}
                         deselectSearchBar={deselectSearchBar}
                     />

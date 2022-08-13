@@ -4,7 +4,7 @@ import "../styles/postSnippet.scss";
 import axios from 'axios';
 import Comments from "./Comments";
 
-export default function PostSnippet({ username, id, title, description, url, likes, comments, postIndex, setPostIndex, hasCommentSection }) {
+export default function PostSnippet({ username, id, title, description, url, likes, comments, hasCommentSection }) {
 
     const [newCommentText, setNewCommentText] = useState("");
     const [commentState, setCommentState] = useState([]);
