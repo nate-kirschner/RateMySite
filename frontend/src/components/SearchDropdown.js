@@ -9,17 +9,13 @@ export default function SearchDropdown({ searchText, style, setPostList, setSear
 
     let navigate = useNavigate();
 
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState(null);
 
     const dropdownRef = useRef();
 
     useEffect(() => {
         setSearchDropdownRef(dropdownRef)
     }, [])
-
-    useEffect(() => {
-        
-    }, [searchText])
 
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
@@ -32,9 +28,9 @@ export default function SearchDropdown({ searchText, style, setPostList, setSear
                     setPosts(resp.data);
                 })
             } else {
-                setPosts([]);
+                setPosts(null);
             }
-        }, 3000)
+        }, 1000)
     
         return () => clearTimeout(delayDebounceFn)
       }, [searchText])
@@ -42,7 +38,14 @@ export default function SearchDropdown({ searchText, style, setPostList, setSear
     return (
         <div className="searchDropdown" style={style} ref={dropdownRef} >
             {
-                posts.map(post => {
+                posts && searchText !== "" && posts.length === 0 && (
+                    <div className="searchOption">
+                            <h3 className="title">No posts matching this search...</h3>
+                        </div>
+                )
+            }
+            {
+                posts && posts.map(post => {
                     return (
                         <div className="searchOption"
                             onClick={() => {
@@ -52,7 +55,6 @@ export default function SearchDropdown({ searchText, style, setPostList, setSear
                             }}>
                             <h3 className="title">{post.title}</h3>
                             <p className="url">{post.url}</p>
-                            {/* <h4 className="description">{post.description}</h4> */}
                         </div>
                     )
                 })
