@@ -59,6 +59,10 @@ export default function Post() {
 
     return (
         <div className={"post mainpage " + (popupOpen && "preventScroll")}>
+            <div className="pageDescriptionBlock">
+                <p>Here you can post your personal website to show to the community.</p>
+                <p>Make sure to give your post a descriptive title and double check that your url is working before submitting.</p>
+            </div>
             <div className="infoBlock">
                 <div className="titleBlock postBlock">
                     <span className="titleSpan label">Post Title</span>
@@ -91,7 +95,12 @@ export default function Post() {
                         onChange={(e) => setHasCommentSection(!hasCommentSection)}
                         checked={hasCommentSection}
                     />
-                    <span className="label checkbox">Has comment section?</span>
+                    <span className="label checkbox">Has comment section?
+                    <span class="tooltip" 
+                        data-tooltip=
+                        "Not looking for advice on your site? Uncheck this to disable comments and just let your work serve as inspriation for others. Note that leaving this checked opens you up to (potentially critical/negative) comments."
+                    >?</span>
+                    </span>
                 </div>
             </div>
 

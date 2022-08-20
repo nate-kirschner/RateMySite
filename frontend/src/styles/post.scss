@@ -10,6 +10,44 @@
     }
 }
 
+.pageDescriptionBlock {
+    font-size: 16px;
+    display: block;
+    text-align: left;
+    margin: 0 0 1em 5%;
+    width: 90%;
+    color: var(--dark-mode-white);
+    border: 2px solid var(--yellow);
+    text-align: center;
+    
+    p {
+        margin: 1em;
+    }
+
+    @include tablet {
+        margin-left: 10%;
+        width: 80%;
+        font-size: 18px;
+    }
+
+    @include laptop {
+        margin-left: 15%;
+        width: 70%;
+        font-size: 20px;
+    }
+
+    @include largeDesktop {
+        margin-left: 25%;
+        width: 50%;
+        font-size: 25px;
+    }
+
+    @include wideScreen {
+        font-size: 30px;
+    }
+       
+}
+
 .infoBlock {
     width: 100%;
     margin: 0;
