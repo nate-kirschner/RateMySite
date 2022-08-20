@@ -401,6 +401,7 @@
     position: absolute;
     content: '';
     opacity: 0;
+    visibility: hidden;
     transition: all 0.4s ease;
   }
   
@@ -439,4 +440,5 @@
   .tooltip:hover::after {
     opacity: 1;
     transform: translateY(-2px);
+    visibility: visible;
   }

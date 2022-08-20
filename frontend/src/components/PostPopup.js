@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
 import '../styles/postPopup.scss'
+import Icon from '../images/just-logo.js';
 
 export default function PostPopup({title, description, url, hasCommentSection, id, setPopupOpen, makePost}) {
 
     const [showConfirmationPopup, setShowConfirmationPopup] = useState(true);
     const [showFinalizedPopup, setShowFinalizedPopup] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const [transition, setTransition] = useState(false);
 
@@ -17,7 +19,7 @@ export default function PostPopup({title, description, url, hasCommentSection, i
             <div className="confirmationPopup">
                 <h3>Ready to submit?</h3>
                 <p>Make sure to double check your submission.</p>
-                <p>Once confirmed, posts can't be edited or deleted.</p>
+                <p>Once submitted, posts can't be edited or deleted.</p>
                 
                 <div className="exampleSubmission">
                     <p className="title">{title}</p>
@@ -27,7 +29,7 @@ export default function PostPopup({title, description, url, hasCommentSection, i
                 </div>
 
                 <div className="buttons">
-                    <button className="submitButton" onClick={() => makePost()}>Submit</button>
+                    <button className="submitButton" onClick={() => { setLoading(true); makePost() }}>Submit</button>
                     <button className="cancelButton" onClick={() => setPopupOpen(false)}>Keep Editing</button>
                 </div>
             </div>
@@ -66,6 +68,19 @@ export default function PostPopup({title, description, url, hasCommentSection, i
         )
     }
 
+    const loadingPopup = () => {
+        return (
+            <div className="loadingPopup">
+                <div className="logoBox">
+                    <Icon className="loadingLogo" />    
+                    <div className="dot one" />
+                    <div className="dot two" />
+                    <div className="dot three" />
+                </div>
+            </div>
+        )
+    }
+
     useEffect(() => {
         if (id) {
             setShowFinalizedPopup(true);
@@ -75,7 +90,10 @@ export default function PostPopup({title, description, url, hasCommentSection, i
     return (
         <div className={"postPopup " + (transition ? "mount" : "unmount")}>
             {
-                showConfirmationPopup && !showFinalizedPopup && confirmationPopup()
+                showConfirmationPopup && !showFinalizedPopup && !loading && confirmationPopup()
+            }
+            {
+                loading && !showFinalizedPopup && loadingPopup()
             }
             {
                 showFinalizedPopup && finalizedPopup()
