@@ -23,12 +23,14 @@ export default function PostSnippet({ username, id, title, description, url, lik
     const submitComment = () => {
         if (newCommentText !== "") {
             const date = new Date();
+            const commentId = commentState.length === 0 ? 0 : commentState[commentState.length - 1].id + 1;
             const commentObj = {
                 text: newCommentText,
                 date: date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear(),
                 username,
                 likes: 0,
-                comments: null
+                comments: null,
+                id: commentId
             }
             setCommentState([...commentState, commentObj])
 

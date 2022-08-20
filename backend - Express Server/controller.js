@@ -18,6 +18,11 @@ async function controller(db, app) {
             res.send(result);
         })
     })
+
+    app.post(config.baseUrl + "/report-comment", (req, res) => {
+        console.log("comment reported: ", req.body);
+        res.send({ status: "success" });
+    })
 }
 
 module.exports = controller;

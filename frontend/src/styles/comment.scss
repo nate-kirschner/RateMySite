@@ -60,3 +60,85 @@
 .comment .likesCount {
     line-height: 1em;
 }
+
+.comment .reportButtonBox {
+    position: absolute;
+    height: max-content;
+    right: 1em;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    height: 25px;
+    width: 7px;
+}
+
+.comment .reportButton {
+    left: 1px;
+    top: 0;
+    height: 5px;
+    width: 5px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: white;
+
+    &::before {
+        content: "";
+        background-color: white;
+        width: 5px;
+        height: 5px;
+        position: absolute;
+        left: 0;
+        top: 10px;
+        border-radius: 50%;
+    }
+
+    &::after {
+        content: "";
+        background-color: white;
+        width: 5px;
+        height: 5px;
+        position: absolute;
+        left: 0;
+        top: 20px;
+        border-radius: 50%;
+    }
+}
+
+.comment  .reportButtonText {
+    z-index: 99999;
+    position: absolute;
+    content: '';
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+
+.comment .reportButtonText {
+    background: var(--dark-mode-white);
+    width: max-content;
+    color: black;
+    text-align: left;
+    // height: 25px;
+    font-size: 15px;
+    font-weight: 300;
+    top: -5px;
+    right: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+    overflow: hidden;
+}
+
+.comment .reportButtonBox:hover {
+    .reportButtonText {
+        opacity: 1;
+        visibility: visible;
+    }
+    
+}
+
+.comment .reportButtonText:hover {
+    background-color: var(--red3);
+    color: white;
+}

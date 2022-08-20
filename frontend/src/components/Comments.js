@@ -41,7 +41,25 @@ export default function Comments({ commentsArr, postId, likes }) {
         setUpdate(!update);
     }
 
+    const reportComment = (comment) => {
+        console.log("reported", comment);
+        const body = {
+            text: comment.text,
+            postId,
+            commentId: comment.id
+        }
+
+        axios.post(config.reportCommentUrl, body).then(resp => {
+            localStorage.setItem("report:post:" + postId + ":comment:" + comment.id, true);
+            setUpdate(!update);
+        })
+    }
+
     const individualComment = (comment, index) => {
+        const storageStr = "report:post:" + postId + ":comment:" + comment.id
+        if (localStorage.getItem(storageStr)) {
+            return null;
+        }
         return (
             <div className="comment">
                 <span className="date">{comment.date}</span>
@@ -57,6 +75,12 @@ export default function Comments({ commentsArr, postId, likes }) {
                     </svg> 
                     <span className="likesCount">{comment.likes}</span>
                 </div>
+                <div className="reportButtonBox">
+                    <div className="reportButton">
+                        <div className="reportButtonText" 
+                            onClick={() => reportComment(comment, index)}>Report Comment</div>
+                    </div>
+                </div>
             </div>
         )
     }
@@ -65,7 +89,7 @@ export default function Comments({ commentsArr, postId, likes }) {
         <div className="commentBlock">
             {
                 commentsArr && commentsArr.map((comment, index) => {
-                    return individualComment(comment, index); 
+                    return individualComment(comment); 
                 })
             }
         </div>
