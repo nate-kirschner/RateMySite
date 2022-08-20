@@ -152,27 +152,12 @@
     height: 0;
     padding-bottom: 75%;
 
-    // @include desktop {
-    //     width: 0;
-    //     height: 75%;
-    //     padding-left: 75%;
-    //     padding-bottom: 0;
-    //     background-color: red;
-    // }
-
     @include desktop {
         // position: absolute;
         width: 75%;
         height: 75%;
         padding-bottom: 0;
     }
-
-    // @include largeDesktop {
-    //     width: 50%;
-    //     margin: 0 25%;
-    //     height: 450px;
-    //     max-height: max-content;
-    // }
 }
 
 .loadingPopup .loadingLogo {

@@ -26,6 +26,8 @@ function App() {
 
   const prev = usePrevious({ sort });
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     localStorage.setItem("sorting", sort.keyName);
   }, [sort])
@@ -44,11 +46,13 @@ function App() {
       endIdx: index[1],
       sort: sort
     }
+    setLoading(true);
     axios.post(config.getPostUrl, body).then(resp => {
       if (resp.data.length === 0) {
         setIndex([0, 5]);
       }
       setPostList(resp.data);
+      setLoading(false)
     })
   }, [index]);
 
@@ -79,6 +83,7 @@ function App() {
             setPostList={setPostList}
             index={index}
             setIndex={setIndex}
+            loading={loading}
           />
         } />
         <Route path="/post" element={<Post />} />

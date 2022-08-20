@@ -3,12 +3,13 @@ import { useEffect, useState } from "react"
 import config from '../config';
 import PostSnippet from "./PostSnippet";
 import NoPostsPage from "./NoPostsPage";
+import Icon from '../images/just-logo.js';
 
 import { useSearchParams, useLocation } from 'react-router-dom';
 
 import '../styles/browse.scss';
 
-export default function Browse({ postList, setPostList, index, setIndex }) {
+export default function Browse({ postList, setPostList, index, setIndex, loading }) {
     
     const [mounted, setMounted] = useState(false);
 
@@ -67,13 +68,36 @@ export default function Browse({ postList, setPostList, index, setIndex }) {
         setMounted(true);
     }, [location]);
 
+    const displayPostSnippet = () => {
+        if (postList.length === 0 || listIndex >= postList.length) {
+            return <NoPostsPage />
+        } else {
+            return <PostSnippet {...postList[listIndex]} />
+        }
+    }
+
+    const displayLoadingIcon = () => {
+        return (
+            <div className="loadingPopup">
+                <div className="logoBox">
+                    <Icon className="loadingLogo" />    
+                    <div className="dot one" />
+                    <div className="dot two" />
+                    <div className="dot three" />
+                </div>
+            </div>
+        )
+    }
+
     return (
         <div className="browse mainpage">
             {
-                postList.length === 0 || listIndex >= postList.length ? 
-                <NoPostsPage />
-                :
-                <PostSnippet {...postList[listIndex]} />
+                loading ? (
+                    displayLoadingIcon()
+                ) :
+                (
+                    displayPostSnippet()
+                )
             }
             <div className={"swipeButtons " + (mounted && "mounted")}>
                 <div 

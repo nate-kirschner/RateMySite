@@ -198,3 +198,59 @@
         }
     }
   }
+
+
+.browse .loadingPopup {
+    width: 50vh;
+    margin: 10vh auto;
+
+    // @include tablet {
+    //     width: 40%;
+    //     margin: 10% auto;
+    // }
+}
+
+.browse .logoBox {
+    margin: auto;
+    position: relative;
+    width: 75%;
+    height: 0;
+    padding-bottom: 75%;
+}
+
+.browse .dot {
+    width: 7%;
+    height: 7%;
+    top: 15%;
+    background-color: var(--yellow);
+    border-radius: 50%;
+    position: absolute;
+    opacity: 0;
+}
+
+
+.browse .dot.one {
+    
+    
+    @include desktop {
+        left: 50%;
+        transform: translateX(calc(-50% - 13vh));
+    }
+}
+
+.browse .dot.two {
+    
+    @include desktop {
+        left: 50%;
+        transform: translateX(calc(-50% - 9vh));
+    }
+
+}
+
+.browse .dot.three {
+
+    @include desktop {
+        left: 50%;
+        transform: translateX(calc(-50% - 5vh));
+    }
+}
