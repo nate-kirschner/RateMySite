@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import axios from 'axios';
 import config from '../config';
 
 import '../styles/post.scss';
 import PostPopup from "./PostPopup";
+
+import ReCAPTCHA from "react-google-recaptcha"
 
 export default function Post() {
 
@@ -16,11 +18,14 @@ export default function Post() {
 
     const [popupOpen, setPopupOpen] = useState(false);
     const [wasSubmitClicked, setWasSubmitClicked] = useState(false);
+
+    const captchaRef  = useRef(null);
     
     const makePost = () => {
         if (title !== "" || url !== "" || url !== "https://") { // TODO or iframe not rendered
+            const token = captchaRef.current.getValue();
             const body = {
-                title, description, url, hasCommentSection
+                title, description, url, hasCommentSection, captchaToken: token
             }
             axios.post(config.makePostUrl, body).then(resp => {
                 if (resp.data.status === 200) {
@@ -28,6 +33,7 @@ export default function Post() {
                 } else {
                     setPostId("Invalid");
                 }
+                captchaRef.current.reset();
             })
         } else {
             setPostId("Invalid");
@@ -105,7 +111,12 @@ export default function Post() {
             </div>
 
             <iframe className="iframe" src={url} title="title" />
-
+            
+            <ReCAPTCHA 
+                className="recaptcha"
+                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                ref={captchaRef}
+            />
             <button className="submit" onClick={() => submitClicked()}>Submit</button>
 
             {

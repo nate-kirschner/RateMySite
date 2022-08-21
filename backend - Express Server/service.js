@@ -1,7 +1,8 @@
 const dao = require('./dao');
+const axios = require('axios');
 
 async function makePost(db, params, callback) {
-    const { title, description, url, hasCommentSection } = params;
+    const { title, description, url, hasCommentSection, captchaToken } = params;
     let editKeyFound = false;
     let editKey;
     while (!editKeyFound) {
@@ -9,9 +10,15 @@ async function makePost(db, params, callback) {
         editKeyFound = await dao.doesEditKeyExist(db, { editKey })
     }
     try {
-        dao.makePost(db, { title, description, url, hasCommentSection, editKey }, (result) => {
-            callback({ status: 200, postInfo: {title, url, postId: result.insertId }})
-        })
+        const captcha = await veryifyCaptcha(captchaToken);
+        if (captcha) {
+            dao.makePost(db, { title, description, url, hasCommentSection, editKey }, (result) => {
+                callback({ status: 200, postInfo: {title, url, postId: result.insertId }})
+            })
+        } else {
+            console.log("Captcha not validated ", err);
+            callback({ status: 400 });
+        }
     } catch (err) {
         console.log("Error making post ", err);
         callback({ status: 400 });
@@ -50,6 +57,17 @@ async function updatePost(db, params, callback) {
     dao.updatePost(db, { postId, likes, comments, nextCommentId }, (result) => {
         callback({ status: 200 });
     })
+}
+
+async function veryifyCaptcha(token) {
+    if (!process.env.CAPTCHA_SECRET_KEY) {
+        return false;
+    }
+    const captchaResp = await axios.post(
+        `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_SECRET_KEY}&response=${token}`
+    );
+    
+    return captchaResp.data.success && captchaResp.status === 200;
 }
 
 module.exports = {

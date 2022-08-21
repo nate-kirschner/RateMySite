@@ -3,6 +3,7 @@
 
 const AWS = require('aws-sdk');
 const lambda = new AWS.Lambda();
+const axios = require('axios');
 
 const twilio = require('twilio');
 const twilioClient = twilio(
@@ -18,8 +19,40 @@ async function sendMessage(message) {
   });
 }
 
+async function veryifyCaptcha(body) {
+  let eventBody;
+  try {
+      eventBody = JSON.parse(body);
+  } catch(err) {
+      eventBody = body;
+  }
+
+  if (!process.env.CAPTCHA_SECRET_KEY || !eventBody.captchaToken) {
+      return false;
+  }
+  const captchaResp = await axios.post(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.CAPTCHA_SECRET_KEY}&response=${eventBody.captchaToken}`
+  );
+  
+  return captchaResp.data.success && captchaResp.status === 200;
+}
+
 exports.handler = async (event, context, callback) => {
-    
+
+    const captcha = await veryifyCaptcha(event.body);
+    if (!captcha) {
+      const returnVal = {
+        statusCode: 200,
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        },
+        isBase64Encoded: false,
+        body: JSON.stringify({ status: 400 })
+      }
+      return returnVal;
+    }
+
     const params = {
       FunctionName: 'arn:aws:lambda:us-east-2:313267782585:function:makePost',
       InvocationType: 'RequestResponse',
