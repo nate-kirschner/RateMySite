@@ -12,10 +12,11 @@ async function getPost(db, params) {
 }
 
 function getPostsByTitleOrURL(db, params) {
-    const { searchString } = params;
+    let { searchString } = params;
+    searchString = "%" + searchString + "%"
     return new Promise((resolve, reject) => {
-        db.query(`select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 and (title like '%${searchString}%' or url like '%${searchString}%')`, 
-        [], 
+        db.query(`select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 and (title like ? or url like ?)`, 
+        [searchString, searchString], 
         (err, result) => {
             if (err) {
                 reject(err);
@@ -44,8 +45,18 @@ function getPostById(db, params) {
 function getPostsSorted(db, params) {
     const { startIdx, endIdx, sort } = params;
     const limit = endIdx - startIdx;
+    const direction = sort.direction === 'ASC' || sort.direction === 'DESC' ? sort.direction : "";
+    const query = "select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 order by " +
+    "case ? " +
+        "when 'likes' then likes " +
+        "when 'time_created' then time_created " +
+        "when '(likes + numComments)' then (likes + numComments) " +
+        "when 'RAND()' then RAND() " +
+    "end " +
+    `${direction} ` + 
+    "limit ? offset ?"
     return new Promise((resolve, reject) => {
-        db.query(`select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 order by ${sort.type} ${sort.direction} limit ? offset ?`, [limit, startIdx], (err, result) => {
+        db.query(query, [sort.type, limit, startIdx], (err, result) => {
             if (err) {
                 reject(err);
             } else {
