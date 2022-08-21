@@ -42,7 +42,6 @@ export default function Comments({ commentsArr, postId, likes }) {
     }
 
     const reportComment = (comment) => {
-        console.log("reported", comment);
         const body = {
             text: comment.text,
             postId,
@@ -89,7 +88,7 @@ export default function Comments({ commentsArr, postId, likes }) {
         <div className="commentBlock">
             {
                 commentsArr && commentsArr.map((comment, index) => {
-                    return individualComment(comment); 
+                    return individualComment(comment, index); 
                 })
             }
         </div>

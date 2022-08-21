@@ -25,7 +25,7 @@ exports.handler = async (event, context, callback) => {
 
     const {postId, text, commentId} = params;
 
-    const textMessage = ' \n\nComment Reported\n\n"' + text + '"\n\nPost ID: ' + postId + '\n\nComment ID' + commentId;
+    const textMessage = ' \n\nComment Reported\n\n"' + text + '"\n\nPost ID: ' + postId + '\n\nComment ID: ' + commentId;
 
 
     try {
@@ -41,7 +41,7 @@ exports.handler = async (event, context, callback) => {
             "Access-Control-Allow-Origin": "*"
         },
         isBase64Encoded: false,
-        body: JSON.stringify({ status: 200, postInfo })
+        body: JSON.stringify({ status: 200 })
     }
       
     return returnVal;
