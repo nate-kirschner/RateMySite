@@ -15,7 +15,7 @@ function getPostsByTitleOrURL(db, params) {
     let { searchString } = params;
     searchString = "%" + searchString + "%"
     return new Promise((resolve, reject) => {
-        db.query(`select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 and (title like ? or url like ?)`, 
+        db.query(`select id, title, description, url, likes, comments, nextCommentId, numComments, hasCommentSection from posts where isApproved = 1 and (title like ? or url like ?)`, 
         [searchString, searchString], 
         (err, result) => {
             if (err) {
@@ -30,7 +30,7 @@ function getPostsByTitleOrURL(db, params) {
 function getPostById(db, params) {
     const { postId } = params;
     return new Promise((resolve, reject) => {
-        db.query("select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where id = ?", [postId], 
+        db.query("select id, title, description, url, likes, comments, nextCommentId, numComments, hasCommentSection from posts where id = ?", [postId], 
         (err, result) => {
             if (err) {
                 reject(err);
@@ -46,7 +46,7 @@ function getPostsSorted(db, params) {
     const { startIdx, endIdx, sort } = params;
     const limit = endIdx - startIdx;
     const direction = sort.direction === 'ASC' || sort.direction === 'DESC' ? sort.direction : "";
-    const query = "select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 order by " +
+    const query = "select id, title, description, url, likes, comments, nextCommentId, numComments, hasCommentSection from posts where isApproved = 1 order by " +
     "case ? " +
         "when 'likes' then likes " +
         "when 'time_created' then time_created " +

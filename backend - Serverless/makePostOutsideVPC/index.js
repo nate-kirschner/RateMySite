@@ -34,7 +34,7 @@ exports.handler = async (event, context, callback) => {
     
     const payload = JSON.parse(response.Payload);
     const postInfo = JSON.parse(payload.body);
-    const textMessage = ' \n\n' + postInfo.title + '\n\n' + "ID: " + postInfo.postId + '\n\n' + postInfo.url;
+    const textMessage = ' Post Submitted\n\n' + postInfo.title + '\n\n' + "ID: " + postInfo.postId + '\n\n' + postInfo.url + "\n\nEx: (Approve/Deny) " + postInfo.postId;
 
     try {
         const message = await sendMessage(textMessage);

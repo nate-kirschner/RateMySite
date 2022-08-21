@@ -25,8 +25,7 @@ exports.handler = async (event, context, callback) => {
 
     const {postId, text, commentId} = params;
 
-    const textMessage = ' \n\nComment Reported\n\n"' + text + '"\n\nPost ID: ' + postId + '\n\nComment ID: ' + commentId;
-
+    const textMessage = ' \n\nComment Reported\n\n"' + text + '"\n\nPost ID: ' + postId + '\n\nComment ID: ' + commentId + '\n\nEx: Report ' + postId + ':' + commentId;
 
     try {
         const message = await sendMessage(textMessage);

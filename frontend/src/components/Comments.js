@@ -3,7 +3,7 @@ import axios from 'axios';
 import '../styles/comment.scss';
 import config from '../config';
 
-export default function Comments({ commentsArr, postId, likes }) {
+export default function Comments({ commentsArr, postId, likes, nextCommentId }) {
 
     const [update, setUpdate] = useState(false);
 
@@ -11,18 +11,7 @@ export default function Comments({ commentsArr, postId, likes }) {
         let newLikes = commentLikes;
         let storedDirection = localStorage.getItem("post:" + postId + ":comment:" + index);
 
-        if (direction === "down") {
-            if (storedDirection === "down") {
-                newLikes += 1;
-                localStorage.setItem("post:" + postId + ":comment:" + index, null);
-            } else if (storedDirection === "up") {
-                newLikes -= 2;
-                localStorage.setItem("post:" + postId + ":comment:" + index, direction);
-            } else {
-                newLikes -= 1;
-                localStorage.setItem("post:" + postId + ":comment:" + index, direction);
-            }
-        } else if (direction === "up") {
+        if (direction === "up") {
             if (storedDirection === "up") {
                 newLikes -= 1;
                 localStorage.setItem("post:" + postId + ":comment:" + index, null);
@@ -36,7 +25,7 @@ export default function Comments({ commentsArr, postId, likes }) {
         }
 
         commentsArr[index].likes = newLikes;
-        const body = { likes, comments: commentsArr, postId };
+        const body = { likes, comments: commentsArr, postId, nextCommentId };
         axios.post(config.updatePostUrl, body);
         setUpdate(!update);
     }

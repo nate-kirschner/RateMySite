@@ -18,7 +18,7 @@ function getPostsSorted(db, params, callback) {
     const { startIdx, endIdx, sort } = params;
     const limit = endIdx - startIdx;
     const direction = sort.direction === 'ASC' || sort.direction === 'DESC' ? sort.direction : "";
-    const query = "select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 order by " +
+    const query = "select id, title, description, url, likes, comments, nextCommentId, numComments, hasCommentSection from posts where isApproved = 1 order by " +
     "case ? " +
         "when 'likes' then likes " +
         "when 'time_created' then time_created " +
@@ -36,8 +36,8 @@ function getPostsSorted(db, params, callback) {
 }
 
 function updatePost(db, params, callback) {
-    const { postId, likes, comments } = params;
-    db.query("update posts set likes = ?, comments = ?, numComments = ? where id = ?", [likes, JSON.stringify(comments), comments.length, postId], (err, result) => {
+    const { postId, likes, comments, nextCommentId } = params;
+    db.query("update posts set likes = ?, comments = ?, nextCommentId = ?, numComments = ? where id = ?", [likes, JSON.stringify(comments), nextCommentId, comments.length, postId], (err, result) => {
         if (err) {
             throw err;
         }
@@ -48,7 +48,7 @@ function updatePost(db, params, callback) {
 function getPostsByTitleOrURL(db, params, callback) {
     let { searchString } = params;
     searchString = "%" + searchString + "%"
-    db.query(`select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where isApproved = 1 and title like ? or url like ?`, [searchString, searchString], 
+    db.query(`select id, title, description, url, likes, comments, nextCommentId, numComments, hasCommentSection from posts where isApproved = 1 and title like ? or url like ?`, [searchString, searchString], 
     (err, result) => {
         if (err) {
             throw err;
@@ -59,7 +59,7 @@ function getPostsByTitleOrURL(db, params, callback) {
 
 function getPostById(db, params, callback) {
     const { postId } = params;
-    db.query("select id, title, description, url, likes, comments, numComments, hasCommentSection from posts where id = ?", [postId], 
+    db.query("select id, title, description, url, likes, comments, nextCommentId, numComments, hasCommentSection from posts where id = ?", [postId], 
     (err, result) => {
         if (err) {
             throw err;

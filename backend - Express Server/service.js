@@ -46,8 +46,8 @@ async function getPosts(db, params, callback) {
 }
 
 async function updatePost(db, params, callback) {
-    const { postId, likes, comments } = params;
-    dao.updatePost(db, { postId, likes, comments }, (result) => {
+    const { postId, likes, comments, nextCommentId } = params;
+    dao.updatePost(db, { postId, likes, comments, nextCommentId }, (result) => {
         callback({ status: 200 });
     })
 }

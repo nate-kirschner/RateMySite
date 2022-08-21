@@ -4,11 +4,12 @@ import "../styles/postSnippet.scss";
 import axios from 'axios';
 import Comments from "./Comments";
 
-export default function PostSnippet({ username, id, title, description, url, likes, comments, hasCommentSection }) {
+export default function PostSnippet({ username, id, title, description, url, likes, comments, nextCommentId, hasCommentSection }) {
 
     const [newCommentText, setNewCommentText] = useState("");
     const [commentState, setCommentState] = useState([]);
     const [postLikes, setPostLikes] = useState(likes);
+    const [commentId, setCommentId] = useState(nextCommentId);
 
     useEffect(() => {
         setPostLikes(likes)
@@ -23,19 +24,20 @@ export default function PostSnippet({ username, id, title, description, url, lik
     const submitComment = () => {
         if (newCommentText !== "") {
             const date = new Date();
-            const commentId = commentState.length === 0 ? 0 : commentState[commentState.length - 1].id + 1;
             const commentObj = {
                 text: newCommentText,
                 date: date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear(),
                 username,
                 likes: 0,
                 comments: null,
-                id: commentId
+                id: commentId + 1
             }
             setCommentState([...commentState, commentObj])
 
-            const body = { likes: postLikes, comments: [...commentState, commentObj], postId: id };
-            axios.post(config.updatePostUrl, body);
+            const body = { likes: postLikes, comments: [...commentState, commentObj], nextCommentId: commentId + 1, postId: id };
+            axios.post(config.updatePostUrl, body).then(resp => {
+                setCommentId(commentId + 1);
+            });
             setNewCommentText("");
         }
     }
@@ -50,18 +52,7 @@ export default function PostSnippet({ username, id, title, description, url, lik
     const updateVotes = (direction) => {
         let newLikes = postLikes;
         let storedDirection = localStorage.getItem("post:" + id);
-        if (direction === "down") {
-            if (storedDirection === "down") {
-                newLikes += 1;
-                localStorage.setItem("post:" + id, null);
-            } else if (storedDirection === "up") {
-                newLikes -= 2;
-                localStorage.setItem("post:" + id, direction);
-            } else {
-                newLikes -= 1;
-                localStorage.setItem("post:" + id, direction);
-            }
-        } else if (direction === "up") {
+        if (direction === "up") {
             if (storedDirection === "up") {
                 newLikes -= 1;
                 localStorage.setItem("post:" + id, null);
@@ -76,7 +67,8 @@ export default function PostSnippet({ username, id, title, description, url, lik
         const body = { 
             likes: newLikes, 
             comments: commentState, 
-            postId: id 
+            postId: id,
+            nextCommentId: commentId
         };
         axios.post(config.updatePostUrl, body)
         setPostLikes(newLikes);
@@ -123,7 +115,7 @@ export default function PostSnippet({ username, id, title, description, url, lik
                     hasCommentSection && (
                         <div className="comments">
                             <h3 className="commentsTitle">Comments</h3>
-                            <Comments commentsArr={commentState} postId={id} likes={postLikes} />
+                            <Comments commentsArr={commentState} postId={id} likes={postLikes} nextCommentId={commentId} />
                             <div className="commentInputBlock">
                                 <textarea className="commentInput" rows={2} placeholder="Add a new comment..." value={newCommentText} onChange={(e) => setNewCommentText(e.target.value)} onKeyDown={(e) => handleEnterComment(e)}/>
                                 <div className="submitComment" onClick={() => submitComment()}>Send</div>
