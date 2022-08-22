@@ -48,12 +48,38 @@
     @include laptop {
         margin: 100px 0 0 0;
         width: 50%;
-        
     }
 }
 
 .browseText {
+   
+}
 
+.browseFollowUp, .postFollowUp {
+    width: 100% !important;
+    order: 5;
+    // padding: 5%;
+    font-size: 16px !important;
+    margin: 30px 0 0 0 !important;
+
+    p {
+        margin: 0 !important;
+        text-align: left;
+        font-size: 20px !important;
+    }
+
+    ul {
+        text-align: left;
+    }
+    
+    @include laptop {
+        font-size: 22px !important;
+        width: 40% !important;
+
+        p {
+            font-size: 24px !important;
+        }
+    }
 }
 
 .postText {
@@ -67,13 +93,23 @@
     background-color: var(--dark-mode-white);
     color: var(--dark-mode-gray);
     border: none;
-    margin: 40px 0 0 0;
+    margin: 40px 20% 0 20%;
     cursor: pointer;
 
     &:active {
         background-color: var(--dark-mode-white-2);
         box-shadow: inset 0px 0px 5px black;
     }
+
+    @include laptop {
+        margin: 40px 10% 30px 10%;
+    }
+
+    @include largeDesktop {
+        margin: 40px 15% 0 15%;
+    }
+
+    
 }
 
 .browseButton {
