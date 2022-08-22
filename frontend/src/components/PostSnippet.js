@@ -87,7 +87,7 @@ export default function PostSnippet({ username, id, title, description, url, lik
                     <div className="titleTooltipBlock">
                         <h3 className="postTitle">{title}</h3>
                         {
-                            description != "" && <span class="tooltip" data-tooltip={description}>?</span>
+                            description != "" && <span className="tooltip" data-tooltip={description}>?</span>
                         }
                     </div>
                     <a className="postUrl" href={url} target="_blank" rel="noreferrer noopener">{url}</a>

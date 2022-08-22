@@ -73,7 +73,7 @@ export default function Post() {
                 <div className="titleBlock postBlock">
                     <span className="titleSpan label">Post Title</span>
                     <input type="text"
-                        className={(wasSubmitClicked && title === "" && "highlightRed")}
+                        className={(wasSubmitClicked && title === "" ? "highlightRed" : "")}
                         value={title} 
                         onChange={(e) => setTitle(e.target.value)} 
                     />
@@ -82,7 +82,7 @@ export default function Post() {
                 <div className="urlBlock postBlock">
                     <span className="urlSpan label">Website Url</span>
                     <input type="text" 
-                        className={(wasSubmitClicked && (url === "" || url === "https://") && "highlightRed")}
+                        className={(wasSubmitClicked && (url === "" || url === "https://") ? "highlightRed" : "")}
                         value={url} 
                         onChange={(e) => setUrl(e.target.value)} 
                     />
@@ -102,7 +102,7 @@ export default function Post() {
                         checked={hasCommentSection}
                     />
                     <span className="label checkbox">Has comment section?
-                    <span class="tooltip" 
+                    <span className="tooltip" 
                         data-tooltip=
                         "Not looking for advice on your site? Uncheck this to disable comments and just let your work serve as inspriation for others. Note that leaving this checked opens you up to (potentially critical/negative) comments."
                     >?</span>

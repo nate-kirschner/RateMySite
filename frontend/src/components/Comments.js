@@ -49,7 +49,7 @@ export default function Comments({ commentsArr, postId, likes, nextCommentId }) 
             return null;
         }
         return (
-            <div className="comment">
+            <div className="comment" key={comment.id}>
                 <span className="date">{comment.date}</span>
                 <span className="text">{comment.text}</span>
                 <div className="commentLikesDiv">

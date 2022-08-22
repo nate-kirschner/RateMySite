@@ -67,6 +67,7 @@ export default function Sorter({ searchSelected, sort, setSort, setBrowseRef }) 
                             if (value !== sort) {
                                 return (
                                     <div className={"sortOption "}
+                                        key={value.displayName}
                                         onClick={() => {
                                             if (displaySortOption) {
                                                 setSort(value);

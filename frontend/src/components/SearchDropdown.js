@@ -48,6 +48,7 @@ export default function SearchDropdown({ searchText, style, setPostList, setSear
                 posts && posts.map(post => {
                     return (
                         <div className="searchOption"
+                            key={post.id}
                             onClick={() => {
                                 setPostList([post]); 
                                 deselectSearchBar(); 
