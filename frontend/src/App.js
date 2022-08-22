@@ -1,7 +1,7 @@
 import './App.scss';
 import Header from './components/Header';
 import Browse from './components/Browse';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, useSearchParams } from 'react-router-dom';
 import Post from './components/Post';
 import { useEffect, useState } from 'react';
 import { SORTING } from './util/Constants';
@@ -21,8 +21,13 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [postList, setPostList] = useState([]);
-  const [index, setIndex] = useState([0, 5])
+  const [index, setIndex] = useState(JSON.parse(localStorage.getItem("index")) || [0, 5]);
+  useEffect(() => {
+    localStorage.setItem("index", JSON.stringify(index))
+  }, [index])
 
   const prev = usePrevious({ sort });
 
@@ -41,6 +46,15 @@ function App() {
   }, [location.pathname])
 
   useEffect(() => {
+    const postId = new URLSearchParams(location.search).get('id');
+    if (!isNaN(parseInt(postId))) {
+      getPostById(postId);
+    } else {
+      getPostByIndex();
+    }
+  }, [index]);
+
+  const getPostByIndex = () => {
     const body = {
       startIdx: index[0],
       endIdx: index[1],
@@ -54,7 +68,33 @@ function App() {
       setPostList(resp.data);
       setLoading(false)
     })
-  }, [index]);
+  }
+
+  const [listIndex, setListIndex] = useState(parseInt(localStorage.getItem("listIndex")) || 0);
+  useEffect(() => {
+      localStorage.setItem("listIndex", listIndex)
+  }, [listIndex])
+
+  const getPostById = (postId) => {
+    if (postId !== null) {
+        if (!postList[listIndex] || postId != postList[listIndex].id) {
+            const body = {
+                postId,
+                sort: "id"
+            }
+            axios.post(config.getPostUrl, body).then(resp => {
+                if (resp.data.length !== 0) {
+                    setPostList([resp.data[0]]);
+                    // setSearchParams({});
+                    setListIndex(0)
+                } else {
+                    setPostList([]);
+                    setSearchParams({});
+                }
+            })
+        }
+    }
+  }
 
   useEffect(() => {
     if (prev && prev.sort !== null && prev.sort !== sort) {
@@ -84,6 +124,9 @@ function App() {
             index={index}
             setIndex={setIndex}
             loading={loading}
+            getPostById={getPostById}
+            listIndex={listIndex}
+            setListIndex={setListIndex}
           />
         } />
         <Route path="/post" element={<Post />} />

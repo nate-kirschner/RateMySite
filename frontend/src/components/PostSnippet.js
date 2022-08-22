@@ -89,6 +89,14 @@ export default function PostSnippet({ username, id, title, description, url, lik
                         {
                             description != "" && <span className="tooltip" data-tooltip={description}>?</span>
                         }
+                        <div className="shareIcon">
+                            <div className="shareIconBorder">
+                                <div className="shareIconContent">
+                                    Share this post with the following link:<br />
+                                    <a href={"https://ratemysite.xyz/#/browse?id=" + id}>https://ratemysite.xyz/#/browse?id={id}</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <a className="postUrl" href={url} target="_blank" rel="noreferrer noopener">{url}</a>
                 </div>

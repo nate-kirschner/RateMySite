@@ -20,7 +20,6 @@ async function controller(db, app) {
     })
 
     app.post(config.baseUrl + "/report-comment", (req, res) => {
-        console.log("comment reported: ", req.body);
         res.send({ status: "success" });
     })
 }

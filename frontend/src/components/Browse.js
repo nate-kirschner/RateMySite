@@ -9,7 +9,7 @@ import { useSearchParams, useLocation } from 'react-router-dom';
 
 import '../styles/browse.scss';
 
-export default function Browse({ postList, setPostList, index, setIndex, loading }) {
+export default function Browse({ postList, setPostList, index, setIndex, loading, getPostById, listIndex, setListIndex }) {
     
     const [mounted, setMounted] = useState(false);
 
@@ -17,9 +17,8 @@ export default function Browse({ postList, setPostList, index, setIndex, loading
 
     const location = useLocation();
 
-    const [listIndex, setListIndex] = useState(0);
-
     const changeListIndex = (newListIndex) => {
+        setSearchParams({})
         if (newListIndex < 0) {
             if (index[0] - 5 >= 0) {
                 setIndex([index[0] - 5, index[1] - 5]);
@@ -35,34 +34,10 @@ export default function Browse({ postList, setPostList, index, setIndex, loading
 
     useEffect(() => {
         const postId = new URLSearchParams(location.search).get('id');
-        if (postId !== null) {
-            if (!postList[listIndex] || postId != postList[listIndex].id) {
-                const body = {
-                    postId,
-                    sort: "id"
-                }
-                axios.post(config.getPostUrl, body).then(resp => {
-                    if (resp.data.length !== 0) {
-                        setPostList([resp.data[0]]);
-                    } else {
-                        setPostList([]);
-                    }
-                })
-            }
+        if (!isNaN(parseInt(postId))) {
+            getPostById(postId);
         }
     }, [searchParams])
-
-    useEffect(() => {
-        if (postList[listIndex]) {
-            setSearchParams({ id: postList[listIndex].id });
-        } else {
-            setSearchParams({});
-        }
-    }, [listIndex])
-
-    useEffect(() => {
-        setListIndex(0);
-    }, [postList])
 
     useEffect(() => {
         setMounted(true);
