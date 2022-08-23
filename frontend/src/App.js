@@ -15,6 +15,10 @@ import usePrevious from './util/usePrevious';
 function App() {  
   const [sort, setSort] = useState(localStorage.getItem("sorting") ? SORTING[localStorage.getItem("sorting")] : SORTING["Most Liked"]);
 
+  useEffect(() => {
+    localStorage.setItem("sorting", sort.keyName);
+  }, [sort])
+
   const [showHeader, setShowHeader] = useState(false);
   const [sliderDimensions, setSliderDimensions] = useState({});
 
@@ -32,10 +36,6 @@ function App() {
   const prev = usePrevious({ sort });
 
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem("sorting", sort.keyName);
-  }, [sort])
 
   useEffect(() => {
     if (location.pathname === "/") {
@@ -99,6 +99,7 @@ function App() {
   useEffect(() => {
     if (prev && prev.sort !== null && prev.sort !== sort) {
       setIndex([0, 5]);
+      setListIndex(0);
     }
   }, [sort])
 
@@ -108,8 +109,8 @@ function App() {
         className="logo" 
         onClick={() => location.pathname === "/" ? navigate("/browse") : navigate("/")} 
         style={{
-          height: sliderDimensions.height,
-          top: "calc(" + sliderDimensions.top + " + 5px)",
+          height: "calc(" + sliderDimensions.height + " + 5px)",
+          top: "calc(" + sliderDimensions.top + " - 1em)",
         }}
         />
 

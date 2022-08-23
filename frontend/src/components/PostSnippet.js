@@ -15,7 +15,9 @@ export default function PostSnippet({ username, id, title, description, url, lik
     const captchaRef = useRef(null);
 
     useEffect(() => {
-        captchaRef.current.reset();
+        if (captchaRef.current) {
+            captchaRef.current.reset();
+        }
     }, [])
 
     useEffect(() => {

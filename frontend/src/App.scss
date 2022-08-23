@@ -21,13 +21,11 @@
 
   @include laptop {
       display: block;
-      // position: absolute;
       width: 180px;
-      top: 30px;
       left: 20px;
       cursor: pointer;
       z-index: 99999999999999;
-      padding: 1em
+      padding: 1em;
   }
 
   @include desktop {

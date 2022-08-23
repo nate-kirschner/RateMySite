@@ -15,6 +15,7 @@ export default function Home({ setShowHeader }) {
     return (
         <div className="home mainpage">
             <h2 className="title">Hi! Welcome to <span className="logoText">Rate My Site</span>.</h2>
+            <p className="subtitle">An aggregation of personal websites.</p>
 
             <p className="browseText">Browse personal websites and leave constructive feedback.</p>
             <button className="browseButton" onClick={() => goToPage("/browse")}>Browse Websites</button>
@@ -26,7 +27,7 @@ export default function Home({ setShowHeader }) {
                 <ul>You're looking to pass some time.</ul>
             </div>
             
-            <p className="postTextext">Post your own website to be reviewed by the community.</p>
+            <p className="postTextext">Post your own website to be viewed by the community.</p>
             <button className="postButton" onClick={() => goToPage("/post")}>Post Your Own</button>
 
             <div className="browseFollowUp">
