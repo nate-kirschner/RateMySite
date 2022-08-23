@@ -15,6 +15,9 @@
 .logo {
   position: fixed;
   display: none;
+  background: radial-gradient(ellipse closest-side, rgba(37, 44, 63, 1), rgba(37, 44, 63, 0));
+  border-radius: 10px;
+
 
   @include laptop {
       display: block;
@@ -24,6 +27,7 @@
       left: 20px;
       cursor: pointer;
       z-index: 99999999999999;
+      padding: 1em
   }
 
   @include desktop {
