@@ -3,6 +3,7 @@ import config from "../config";
 import "../styles/postSnippet.scss";
 import axios from 'axios';
 import Comments from "./Comments";
+import ReCAPTCHA from "react-google-recaptcha"
 
 export default function PostSnippet({ username, id, title, description, url, likes, comments, nextCommentId, hasCommentSection }) {
 
@@ -10,6 +11,13 @@ export default function PostSnippet({ username, id, title, description, url, lik
     const [commentState, setCommentState] = useState([]);
     const [postLikes, setPostLikes] = useState(likes);
     const [commentId, setCommentId] = useState(nextCommentId);
+
+    const captchaRef = useRef(null);
+
+    useEffect(() => {
+        console.log('reset')
+        captchaRef.current.reset();
+    }, [])
 
     useEffect(() => {
         setPostLikes(likes)
@@ -32,12 +40,16 @@ export default function PostSnippet({ username, id, title, description, url, lik
                 comments: null,
                 id: commentId + 1
             }
-            setCommentState([...commentState, commentObj])
-
-            const body = { likes: postLikes, comments: [...commentState, commentObj], nextCommentId: commentId + 1, postId: id };
-            axios.post(config.updatePostUrl, body).then(resp => {
-                setCommentId(commentId + 1);
+            
+            const token = captchaRef.current.getValue();
+            const body = { likes: postLikes, comments: [...commentState, commentObj], nextCommentId: commentId + 1, postId: id, captchaToken: token };
+            axios.post(config.submitCommentUrl, body).then(resp => {
+                if (resp.data.status === 200) {
+                    setCommentId(commentId + 1);
+                    setCommentState([...commentState, commentObj])
+                }
             });
+            captchaRef.current.reset();
             setNewCommentText("");
         }
     }
@@ -124,7 +136,15 @@ export default function PostSnippet({ username, id, title, description, url, lik
                         <div className="comments">
                             <h3 className="commentsTitle">Comments</h3>
                             <Comments commentsArr={commentState} postId={id} likes={postLikes} nextCommentId={commentId} />
+                            
                             <div className="commentInputBlock">
+                                <div className="captchaDiv">
+                                    <ReCAPTCHA 
+                                        className="recaptcha"
+                                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                                        ref={captchaRef}
+                                    />
+                                </div>
                                 <textarea className="commentInput" rows={2} placeholder="Add a new comment..." value={newCommentText} onChange={(e) => setNewCommentText(e.target.value)} onKeyDown={(e) => handleEnterComment(e)}/>
                                 <div className="submitComment" onClick={() => submitComment()}>Send</div>
                             </div>
