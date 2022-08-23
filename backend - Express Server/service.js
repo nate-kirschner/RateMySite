@@ -16,7 +16,7 @@ async function makePost(db, params, callback) {
                 callback({ status: 200, postInfo: {title, url, postId: result.insertId }})
             })
         } else {
-            console.log("Captcha not validated ", err);
+            console.log("Captcha not validated ");
             callback({ status: 400 });
         }
     } catch (err) {
@@ -59,6 +59,17 @@ async function updatePost(db, params, callback) {
     })
 }
 
+async function submitComment(db, params, callback) {
+    const {captchaToken} = params;
+    const captcha = await veryifyCaptcha(captchaToken);
+    if (captcha) {
+        updatePost(db, params, callback);
+    } else {
+        console.log("Captcha not validated ");
+        callback({ status: 400 });
+    }
+}
+
 async function veryifyCaptcha(token) {
     if (!process.env.CAPTCHA_SECRET_KEY) {
         return false;
@@ -73,5 +84,6 @@ async function veryifyCaptcha(token) {
 module.exports = {
     makePost,
     getPosts,
-    updatePost
+    updatePost,
+    submitComment
 }
