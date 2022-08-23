@@ -6,6 +6,7 @@ import config from '../config';
 export default function Comments({ commentsArr, postId, likes, nextCommentId }) {
 
     const [update, setUpdate] = useState(false);
+    const [isGreen, setIsGreen] = useState(false);
 
     const updateComment = (index, commentLikes, direction) => {
         let newLikes = commentLikes;
@@ -36,10 +37,12 @@ export default function Comments({ commentsArr, postId, likes, nextCommentId }) 
             postId,
             commentId: comment.id
         }
+        setIsGreen(true);
 
         axios.post(config.reportCommentUrl, body).then(resp => {
             localStorage.setItem("report:post:" + postId + ":comment:" + comment.id, true);
             setUpdate(!update);
+            setIsGreen(false);
         })
     }
 
@@ -65,7 +68,7 @@ export default function Comments({ commentsArr, postId, likes, nextCommentId }) 
                 </div>
                 <div className="reportButtonBox">
                     <div className="reportButton">
-                        <div className="reportButtonText" 
+                        <div className={"reportButtonText " + (isGreen && "green")}
                             onClick={() => reportComment(comment, index)}>Report Comment</div>
                     </div>
                 </div>

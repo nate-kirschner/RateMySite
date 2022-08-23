@@ -423,9 +423,15 @@
     transform: translateY(-20px);
 }
 
+.postSnippet {
+    .tooltip:after {
+        content: "Description: \a" attr(data-tooltip);
+        white-space: pre;
+    }
+}
+
 .tooltip:after {
-    content: "Description: \a" attr(data-tooltip);
-    white-space: pre;
+    content: attr(data-tooltip);
     background: var(--dark-mode-white);
     width: max-content;
     max-width: 270px;

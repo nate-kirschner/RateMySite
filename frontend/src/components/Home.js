@@ -21,9 +21,9 @@ export default function Home({ setShowHeader }) {
             
             <div className="browseFollowUp">
                 <p>Why Browse?</p>
-                <ul>Maybe you are looking for inspiration for your own site.</ul>
-                <ul>Maybe you want to give back to the community with helpful comments on their work.</ul>
-                <ul>Maybe you're looking to pass some time.</ul>
+                <ul>You are looking for inspiration for your own site.</ul>
+                <ul>You want to give back to the community with helpful comments on their work.</ul>
+                <ul>You're looking to pass some time.</ul>
             </div>
             
             <p className="postTextext">Post your own website to be reviewed by the community.</p>
@@ -31,9 +31,9 @@ export default function Home({ setShowHeader }) {
 
             <div className="browseFollowUp">
                 <p>Why Post?</p>
-                <ul>Maybe you are looking for advice or criticism on your personal website.</ul>
-                <ul>Maybe you want to inspire others with your work and add your site to this growing collection.</ul>
-                <ul>Maybe you want some validation after completing your project.</ul>
+                <ul>You are looking for advice or criticism on your personal website.</ul>
+                <ul>You want to inspire others with your work and add your site to this growing collection.</ul>
+                <ul>You want some validation after completing your project.</ul>
             </div>
 
             
