@@ -111,7 +111,7 @@
     border: 1px solid var(--dark-mode-white);
     box-shadow: 1px 1px 0px var(--dark-mode-white);
     z-index: 1;
-    border-radius: 10px;
+    border-radius: 40px;
     transition: left .3s, height .3s, width .3s, border-radius .2s;
 
     &.searchSelected {

@@ -104,7 +104,7 @@ export default function Post() {
                     <span className="label checkbox">Has comment section?
                     <span className="tooltip" 
                         data-tooltip=
-                        "Not looking for advice on your site? Uncheck this to disable comments and just let your work serve as inspriation for others. Note that leaving this checked opens you up to (potentially critical/negative) comments."
+                        "Not looking for advice on your site? Uncheck this to disable comments and just let your work serve as inspiration for others. Note that leaving this checked opens you up to (potentially critical/negative) comments."
                     >?</span>
                     </span>
                 </div>

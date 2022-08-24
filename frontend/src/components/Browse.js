@@ -17,7 +17,10 @@ export default function Browse({ postList, setPostList, index, setIndex, loading
 
     const location = useLocation();
 
+    const [isGlow, setIsGlow] = useState(true);
+
     const changeListIndex = (newListIndex) => {
+        setIsGlow(false);
         setSearchParams({})
         if (newListIndex < 0) {
             if (index[0] - 5 >= 0) {
@@ -74,7 +77,7 @@ export default function Browse({ postList, setPostList, index, setIndex, loading
                     displayPostSnippet()
                 )
             }
-            <div className={"swipeButtons " + (mounted && "mounted")}>
+            <div className={"swipeButtons " + (mounted && "mounted ") + (isGlow && "glow")}>
                 <div 
                     className="buttonWrapper" onClick={() => changeListIndex(listIndex - 1)} >
                     <span className={"buttonText prev " + (index[0] > 0 || listIndex > 0 ? "hasNext" : "noNext")}>Prev</span>

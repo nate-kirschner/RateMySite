@@ -64,6 +64,25 @@
     @include desktop {
         bottom: 35px;
     }
+
+    &.glow {
+        animation: glow 10s linear 10s infinite;
+    }
+
+    
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: none;
+    }
+
+    20% {
+        box-shadow: 0 0 15px 10px var(--green3);
+    }
+    40% {
+        box-shadow: none;
+    }
 }
 
 .buttonWrapper {
