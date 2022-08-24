@@ -16,7 +16,7 @@
   position: fixed;
   display: none;
   background: radial-gradient(ellipse closest-side, rgba(37, 44, 63, 1), rgba(37, 44, 63, 0));
-  border-radius: 10px;
+  border-radius: var(--border-radius-1);
 
 
   @include laptop {

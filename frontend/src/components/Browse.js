@@ -77,9 +77,11 @@ export default function Browse({ postList, setPostList, index, setIndex, loading
             <div className={"swipeButtons " + (mounted && "mounted")}>
                 <div 
                     className="buttonWrapper" onClick={() => changeListIndex(listIndex - 1)} >
+                    <span className={"buttonText prev " + (index[0] > 0 || listIndex > 0 ? "hasNext" : "noNext")}>Prev</span>
                     <div className={"left button " + (index[0] > 0 || listIndex > 0 ? "hasNext" : "noNext")} />
                 </div>
                 <div className="buttonWrapper" onClick={() => changeListIndex(listIndex + 1)} >
+                    <span className="buttonText next">Next</span>
                     <div className="right button" />
                 </div>
             </div>

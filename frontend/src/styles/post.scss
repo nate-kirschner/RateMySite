@@ -125,6 +125,8 @@
 .checkBlock {
     width: max-content;
     margin: 0 0 2em 5%;
+    width: calc(95% - 50px);
+    display: flex;
 
     @include tablet {
         margin-left: 10%;
@@ -145,11 +147,29 @@
     padding: 0;
     width: 20px;
     height: 20px;
+    align-self: center;
 }
 
 .postBlock .label.checkbox {
     display: inline;
     margin: 0 0 0 1em;
+}
+
+.postBlock .tooltip {
+    position: absolute;
+    right: 5%;
+
+    @include tablet {
+        right: 10%;
+    }
+
+    @include laptop {
+        right: 15%;
+    }
+
+    @include largeDesktop {
+        right: 25%;
+    }
 }
 
 .post .iframe {

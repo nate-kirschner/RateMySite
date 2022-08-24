@@ -15,7 +15,7 @@ export default function Home({ setShowHeader }) {
     return (
         <div className="home mainpage">
             <h2 className="title">Hi! Welcome to <span className="logoText">Rate My Site</span>.</h2>
-            <p className="subtitle">An aggregation of personal websites.</p>
+            <p className="subtitle">A collection of personal websites.</p>
 
             <p className="browseText">Browse personal websites and leave constructive feedback.</p>
             <button className="browseButton" onClick={() => goToPage("/browse")}>Browse Websites</button>
@@ -23,7 +23,7 @@ export default function Home({ setShowHeader }) {
             <div className="browseFollowUp">
                 <p>Why Browse?</p>
                 <ul>You are looking for inspiration for your own site.</ul>
-                <ul>You want to give back to the community with helpful comments on their work.</ul>
+                <ul>You want to give back to the community by leaving helpful comments on the work of others.</ul>
                 <ul>You're looking to pass some time.</ul>
             </div>
             
@@ -32,7 +32,7 @@ export default function Home({ setShowHeader }) {
 
             <div className="browseFollowUp">
                 <p>Why Post?</p>
-                <ul>You are looking for advice or criticism on your personal website.</ul>
+                <ul>You are looking for feedback on your personal website.</ul>
                 <ul>You want to inspire others with your work and add your site to this growing collection.</ul>
                 <ul>You want some validation after completing your project.</ul>
             </div>

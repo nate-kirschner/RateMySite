@@ -3,7 +3,7 @@
 .searchDropdown {
     background-color: red;
     margin-top: 10px;
-    border-radius: 10px;
+    border-radius: var(--border-radius-1);
     overflow: hidden;
     text-align: left;
     z-index: 99999999999999;
