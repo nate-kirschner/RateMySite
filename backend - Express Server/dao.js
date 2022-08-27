@@ -36,13 +36,29 @@ function getPostsSorted(db, params, callback) {
 }
 
 function updatePost(db, params, callback) {
-    const { postId, likes, comments, nextCommentId } = params;
-    db.query("update posts set likes = ?, comments = ?, nextCommentId = ?, numComments = ? where id = ?", [likes, JSON.stringify(comments), nextCommentId, comments.length, postId], (err, result) => {
-        if (err) {
-            throw err;
+    const { postId, likes, comment, commentIdToIncrease, commentIdToDecrease } = params;
+    db.query("select comments, nextCommentId from posts where id = ?", [postId], (err, result) => {
+        let {comments, nextCommentId} = result[0];
+        comments = JSON.parse(comments);
+        let newCommentId = nextCommentId;
+        if (comment) {
+            comments = [...comments, { ...comment, id: nextCommentId}];
+            newCommentId++;
         }
-        callback(result);
+        if (commentIdToIncrease) {
+            comments = comments.map(c => c.id == commentIdToIncrease ? { ...c, likes: c.likes + 1} : c);
+        }
+        if (commentIdToDecrease) {
+            comments = comments.map(c => c.id == commentIdToDecrease ? { ...c, likes: c.likes - 1} : c);
+        }
+        db.query("update posts set likes = ?, comments = ?, nextCommentId = ?, numComments = ? where id = ?", [likes, JSON.stringify(comments), newCommentId, comments.length, postId], (err, result) => {
+            if (err) {
+                throw err;
+            }
+            callback(result);
+        })
     })
+    
 }
 
 function getPostsByTitleOrURL(db, params, callback) {

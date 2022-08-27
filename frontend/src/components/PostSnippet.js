@@ -5,12 +5,11 @@ import axios from 'axios';
 import Comments from "./Comments";
 import ReCAPTCHA from "react-google-recaptcha"
 
-export default function PostSnippet({ username, id, title, description, url, likes, comments, nextCommentId, hasCommentSection }) {
+export default function PostSnippet({ username, id, title, description, url, likes, comments, hasCommentSection }) {
 
     const [newCommentText, setNewCommentText] = useState("");
     const [commentState, setCommentState] = useState([]);
     const [postLikes, setPostLikes] = useState(likes);
-    const [commentId, setCommentId] = useState(nextCommentId);
 
     const captchaRef = useRef(null);
 
@@ -39,14 +38,12 @@ export default function PostSnippet({ username, id, title, description, url, lik
                 username,
                 likes: 0,
                 comments: null,
-                id: commentId + 1
             }
             
             const token = captchaRef.current.getValue();
-            const body = { likes: postLikes, comments: [...commentState, commentObj], nextCommentId: commentId + 1, postId: id, captchaToken: token };
+            const body = { likes: postLikes, comment: commentObj, postId: id, captchaToken: token };
             axios.post(config.submitCommentUrl, body).then(resp => {
                 if (resp.data.status === 200) {
-                    setCommentId(commentId + 1);
                     setCommentState([...commentState, commentObj])
                 }
             });
@@ -81,7 +78,6 @@ export default function PostSnippet({ username, id, title, description, url, lik
             likes: newLikes, 
             comments: commentState, 
             postId: id,
-            nextCommentId: commentId
         };
         axios.post(config.updatePostUrl, body)
         setPostLikes(newLikes);
@@ -136,7 +132,7 @@ export default function PostSnippet({ username, id, title, description, url, lik
                     hasCommentSection && (
                         <div className="comments">
                             <h3 className="commentsTitle">Comments</h3>
-                            <Comments commentsArr={commentState} postId={id} likes={postLikes} nextCommentId={commentId} />
+                            <Comments commentsArr={commentState} postId={id} likes={postLikes} />
                             
                             <div className="commentInputBlock">
                                 <div className="captchaDiv">
