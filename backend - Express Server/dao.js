@@ -51,7 +51,8 @@ function updatePost(db, params, callback) {
         if (commentIdToDecrease) {
             comments = comments.map(c => c.id == commentIdToDecrease ? { ...c, likes: c.likes - 1} : c);
         }
-        db.query("update posts set likes = ?, comments = ?, nextCommentId = ?, numComments = ? where id = ?", [likes, JSON.stringify(comments), newCommentId, comments.length, postId], (err, result) => {
+        const commentsLength = comments ? comments.length : 0;
+        db.query("update posts set likes = ?, comments = ?, nextCommentId = ?, numComments = ? where id = ?", [likes, JSON.stringify(comments), newCommentId, commentsLength, postId], (err, result) => {
             if (err) {
                 throw err;
             }

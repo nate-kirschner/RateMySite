@@ -62,11 +62,11 @@ function App() {
     }
     setLoading(true);
     axios.post(config.getPostUrl, body).then(resp => {
-      if (resp.data.length === 0) {
+      if (resp.data.length === 0 && index[0] !== 0 && index[1] !== 5) {
         setIndex([0, 5]);
       }
       setPostList(resp.data);
-      setLoading(false)
+      setLoading(false);
     })
   }
 

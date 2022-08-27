@@ -200,15 +200,15 @@
     width: 90%;
     padding: 1em 0;
     margin-bottom: 4em;
-    background-color: var(--green3);
-    color: var(--gray1);
+    background-color: var(--yellow);
+    color: var(--dark-mode-gray);
     font-size: 18px;
     border-radius: 10px;
     border: none;
+    transition: all .4s;
 
     &:hover {
         background-color: var(--green2);
-        color: var(--gray8); 
     }
 
     @include largePhones {
