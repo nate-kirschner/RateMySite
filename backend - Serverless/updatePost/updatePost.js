@@ -7,6 +7,9 @@ async function updatePost(db, params) {
             }
             let {comments, nextCommentId} = result[0];
             comments = JSON.parse(comments);
+            if (comments === null) {
+                comments = [];
+            }
             let newCommentId = nextCommentId;
             if (comment) {
                 comments = [...comments, { ...comment, id: nextCommentId}];
