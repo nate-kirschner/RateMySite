@@ -14,7 +14,7 @@ export default function Home({ setShowHeader }) {
 
     return (
         <div className="home mainpage">
-            <h2 className="title">Hi! Welcome to <span className="logoText">Rate My Site</span>.</h2>
+            <h2 className="title">Welcome to <span className="logoText">Rate My Site</span>.</h2>
             <p className="subtitle">A collection of personal websites.</p>
 
             <p className="browseText">Browse personal websites and leave constructive feedback.</p>
