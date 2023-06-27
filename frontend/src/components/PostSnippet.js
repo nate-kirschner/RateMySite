@@ -189,7 +189,7 @@ export default function PostSnippet({
             </div>
             <div className="pageDescriptionBlock error">
               <p>
-                New comments are currently unavailabled while our servers are
+                New comments are currently unavailable while our servers are
                 down :(
               </p>
               <p>Sorry for the inconvenience.</p>

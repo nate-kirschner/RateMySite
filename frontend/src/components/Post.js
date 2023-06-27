@@ -70,9 +70,7 @@ export default function Post() {
   return (
     <div className={"post mainpage " + (popupOpen && "preventScroll")}>
       <div className="pageDescriptionBlock error">
-        <p>
-          New posts are currently unavailabled while our servers are down :(
-        </p>
+        <p>New posts are currently unavailable while our servers are down :(</p>
         <p>Sorry for the inconvenience.</p>
       </div>
       <div className="pageDescriptionBlock">
