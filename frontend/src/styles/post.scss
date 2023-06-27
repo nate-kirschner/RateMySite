@@ -24,6 +24,10 @@
         margin: 1em;
     }
 
+    &.error {
+        border: 2px solid var(--red5);
+    }
+
     @include tablet {
         margin-left: 10%;
         width: 80%;
